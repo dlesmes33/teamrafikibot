@@ -1,5 +1,4 @@
 from Info_Mensaje import Info_Mensaje
-from Registro import Registro
 import json
 import Servicios
 import datetime
@@ -7,7 +6,7 @@ import os
 import requests
 from flask import Flask, request
 from datetime import datetime,time
-import Persona
+
 
 
 BOT_URL = f'https://api.telegram.org/bot{os.environ["BOT_KEY"]}/'  # <-- add your telegram token as environment variable
@@ -17,6 +16,11 @@ app = Flask(__name__)
 servicio = Servicios.Servicios()
 
 paso = 0
+parametro1 = None
+parametro2 = None
+parametro3 = None
+
+
 
 @app.route('/',methods=['Post'])
 def main():
@@ -24,36 +28,75 @@ def main():
         info = info_mensaje(sms)
 		lista =[]
         print(sms)
-        
+
         if not info.is_bot and info.tipo_sms == "texto":
             if info.id_persona in lista:
                 texto = str(leer_mensaje(sms)).lower()
                  if info.id_persona == '877561784':
                     if paso == 0:
-                       a=0
+                       if texto == "/agregar":
+                           paso = 1
+                           enviar_mensaje(info.id_chat , "Escriba el nombre de usuario")
+
+                    elif texto == "/prestar":
+                        paso = 3
+                        enviar_mensaje(info.id_chat, "Escriba el nombre del que va a prestar")
+
+                    elif texto == "/rotar":
+
+                        enviar_mensaje(info.id_chat, "Rotando...")
+
+                    elif texto == "/rotar":
+
+                        enviar_mensaje(info.id_chat, "Rotando...")
+
+
                     elif paso == 1:
+                        parametro1 = texto
+                        paso = 2
+                        enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
+
+                    elif paso == 2:
+                        if parametro1 != None
+                            enviar_mensaje(info.id_chat, "Operación realizada")
+
+                            parametro1 = None
+                        else:
+                            enviar_mensaje(info.id_chat, "Datos Perdidos")
+                        paso = 0
+
+                    elif paso == 3:
+                        parametro1 = texto
+                        enviar_mensaje(info.id_chat, "Escribe el nombre del destinatario")
+                        paso = 4
+
+
+
+                    elif paso == 4:
+                        parametro2 = texto
+                        enviar_mensaje(info.id_chat, "Escribe la cantidad")
+                        paso = 5
+
+
+                    elif paso == 5:
+                        enviar_mensaje(info.id_chat, "Operacion exitosa")
+                        paso = 0
+                        parametro1 = None
+                        parametro2 = None
+
+                    elif paso == 6:
                         a = 0
-                    elif paso == 1:
+                    elif paso == 7:
                         a = 0
-                    elif paso == 1:
+                    elif paso == 8:
                         a = 0
-                    elif paso == 1:
+                    elif paso == 9:
                         a = 0
-                    elif paso == 1:
+                    elif paso == 10:
                         a = 0
-                    elif paso == 1:
+                    elif paso == 11:
                         a = 0
-                    elif paso == 1:
-                        a = 0
-                    elif paso == 1:
-                        a = 0
-                    elif paso == 1:
-                        a = 0
-                    elif paso == 1:
-                        a = 0
-                    elif paso == 1:
-                        a = 0
-                    elif paso == 1:
+                    elif paso == 12:
                         a = 0
                  else:
 
