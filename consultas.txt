@@ -18,6 +18,8 @@ SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = var
 
 SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE para = varx;
 
+SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = varx AND para = vary;
+
 SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE cantidad = varx;
 
 INSERT INTO public.prestamo(desde, para, cantidad) VALUES (?, ?, ?);
