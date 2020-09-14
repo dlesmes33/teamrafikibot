@@ -1,0 +1,59 @@
+
+/*Paquete*/
+INSERT INTO public.paquete(fk_usuario, fecha, cantidad)	VALUES (?, ?, ?);
+
+SELECT id_paquete, fk_usuario, fecha, cantidad 	FROM public.paquete;
+
+SELECT id_paquete, fk_usuario, fecha, cantidad 	FROM public.paquete WHERE fk_usuario = varx;
+
+UPDATE public.paquete SET id_paquete= var1, fk_usuario= var2, fecha= var3, cantidad=var4 WHERE id_paquete = varx;
+
+DELETE FROM public.paquete WHERE id_paquete = varx;
+
+
+/*Prestamo*/
+SELECT id_prestamo, desde, para, cantidad FROM public.prestamo;
+
+SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = varx;
+
+SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE para = varx;
+
+SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE cantidad = varx;
+
+INSERT INTO public.prestamo(desde, para, cantidad) VALUES (?, ?, ?);
+
+UPDATE public.prestamo SET id_prestamo=?, desde=?, para=?, cantidad=? WHERE id_prestamo = varx;
+
+DELETE FROM public.prestamo	WHERE id_prestamo = varx;
+
+
+/*Rotacion*/
+INSERT INTO public.rotacion(cant_personas, persona_actual)VALUES (?, ?, ?);
+
+UPDATE public.rotacion SET =?, cant_personas=?, persona_actual=? WHERE id_rotacion = varx;
+
+SELECT id_rotacion, cant_personas, persona_actual FROM public.rotacion;
+
+DELETE FROM public.rotacion	WHERE id_rotacion = varx;
+
+
+/*Usuario*/
+INSERT INTO public.usuario(nombre_usuario, id_telegram) VALUES (?, ?);
+
+SELECT id_usuario, nombre_usuario, id_telegram FROM public.usuario;
+
+SELECT nombre_usuario, id_telegram FROM public.usuario WHERE id_usuario = varx;
+
+UPDATE public.usuario SET  nombre_usuario=?, id_telegram=?	WHERE id_usuario= varx;
+
+DELETE FROM public.usuario 	WHERE id_usuario= varx;
+
+
+/*Variable*/
+INSERT INTO public.variable(nombre, valor) VALUES (?, ?);
+
+SELECT nombre, valor FROM public.variable;
+
+UPDATE public.variable SET nombre=?, valor=? WHERE nombre = varx;
+
+DELETE FROM public.variable	WHERE nombre = varx;
