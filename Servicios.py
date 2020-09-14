@@ -157,5 +157,28 @@ class Servicios():
             existe = True
         miCursor.close()
         return existe
+		
+	def existe_prestamo(self,desde,para):
+	    existe = False
+	    c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [desde,para]
+        miCursor.execute("SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = %s AND para = %s",param_list)
+        tabla = miCursor.fetchall() 
+        for row in tabla:
+            existe = True
+        miCursor.close()
+        return existe	
+		
+	def prestar(self,desde,para,cantidad):
+	    c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+		param_list = [desde,para,cantidad]
+     	if self.existe_prestamo(desde,para)
+		   miCursor.execute("SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = %s AND para = %s",param_list)   
+		
 
-
+		
+	
+		
+	
