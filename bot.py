@@ -22,11 +22,46 @@ paso = 0
 def main():
         sms = request.json
         info = info_mensaje(sms)
-		
+		lista =[]
         print(sms)
         
-        if not info.is_bot and info.tipo_sms == "texto" and info.id_persona == '877561784':
-            #El mensaje es '!polerank'
+        if not info.is_bot and info.tipo_sms == "texto":
+            if info.id_persona in lista:
+                texto = str(leer_mensaje(sms)).lower()
+                 if info.id_persona == '877561784':
+                    if paso == 0:
+                       a=0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                    elif paso == 1:
+                        a = 0
+                 else:
+
+
+
+                 str(leer_mensaje(sms)).lower() == "!polerank":
+            if info.id_persona == '877561784':
+
             if str(leer_mensaje(sms)).lower() == "!polerank":
              
 
