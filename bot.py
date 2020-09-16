@@ -33,7 +33,7 @@ def main():
 
 
 def eee():
-
+''''
         paso = 0
         sms = request.json
         info = info_mensaje(sms)
@@ -122,7 +122,7 @@ def eee():
              
 
         return ''
-
+'''
 def leer_mensaje(mensaje):
     texto = mensaje['message']['text']
     return texto
