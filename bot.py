@@ -33,7 +33,8 @@ def main():
 
 
 def eee():
-''''
+
+        '''
         paso = 0
         sms = request.json
         info = info_mensaje(sms)
@@ -119,10 +120,11 @@ def eee():
             if info.id_persona == '877561784':
 
             if str(leer_mensaje(sms)).lower() == "!polerank":
-             
+
 
         return ''
-'''
+        '''
+
 def leer_mensaje(mensaje):
     texto = mensaje['message']['text']
     return texto
