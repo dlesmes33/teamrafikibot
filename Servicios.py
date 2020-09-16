@@ -5,6 +5,15 @@ import Conexion
 
 @Singleton.SingletonDecorator
 class Servicios():
+    
+    def insertar_persona(self, id_telegram , username ):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [  username , id_telegram ]
+        miCursor.execute("INSERT INTO public.usuario(nombre_usuario, id_telegram) VALUES (%s, %s)", param_list)
+        c.miConexion.commit()
+        miCursor.close()
+
     def puntuacion(self,grupo):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
@@ -247,10 +256,3 @@ class Servicios():
         c.miConexion.commit()
         miCursor.close()
 
-    def insertar_persona(self, id_telegram , username ):
-        c = Conexion.Conexion()
-        miCursor = c.miConexion.cursor()
-        param_list = [  username , id_telegram ]
-        miCursor.execute("INSERT INTO public.usuario(nombre_usuario, id_telegram) VALUES (%s, %s)", param_list)
-        c.miConexion.commit()
-        miCursor.close()
