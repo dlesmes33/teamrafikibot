@@ -27,8 +27,7 @@ def main():
     sms = request.json
     info = info_mensaje(sms)
     if info.tipo_sms == "texto":
-       servicio.insertar_persona(leer_mensaje(sms),4654654654646)
-       enviar_mensaje(info.id_chat,"creemo sque se guardo")
+       enviar_mensaje(info.id_chat,leer_mensaje(sms))
 
 
 
