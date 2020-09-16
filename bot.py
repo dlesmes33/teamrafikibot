@@ -26,7 +26,7 @@ parametro3 = None
 def main():
         sms = request.json
         info = info_mensaje(sms)
-		lista =[]
+        lista = ['877561784']
         print(sms)
 
         if not info.is_bot and info.tipo_sms == "texto":
