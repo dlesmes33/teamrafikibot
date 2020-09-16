@@ -27,7 +27,7 @@ def main():
     sms = request.json
     info = info_mensaje(sms)
     if info.tipo_sms == "texto":
-       enviar_mensaje(info.id_chat,leer_mensaje(sms))
+       enviar_mensaje(877561784,leer_mensaje(sms))
     return ''
 
 
