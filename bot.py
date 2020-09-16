@@ -28,6 +28,8 @@ def main():
     info = info_mensaje(sms)
     if info.tipo_sms == "texto":
        enviar_mensaje(info.id_chat,leer_mensaje(sms))
+    return ''
+
 
 
 
