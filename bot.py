@@ -57,7 +57,8 @@ def main():
                         enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
 
                     elif paso == 2:
-                        if parametro1 != None
+                        if parametro1 != None:
+                            Servicios.Servicios.insertar_persona(parametro1,texto)
                             enviar_mensaje(info.id_chat, "Operación realizada")
 
                             parametro1 = None

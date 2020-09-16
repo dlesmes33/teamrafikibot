@@ -172,12 +172,47 @@ class Servicios():
         miCursor.close()
         return existe
 
-    def prestar(self,desde, para , cantidad):
+    def monto_prestamo(self, id_prestamo):
+        existe = -1
         c = Conexion.Conexion()
-        miCursor = c.miConexion.cursor
 
-        id_prestamo = self.existe_prestamo()
+        miCursor = c.miConexion.cursor()
+        param_list = [id_prestamo]
+        miCursor.execute("SELECT  cantidad FROM public.prestamo WHERE id_prestamo = %s ",param_list)
+        tabla = miCursor.fetchall()
+        for row in tabla:
+             existe = row[0]
+
+        miCursor.close()
+        return existe
+
+    def prestar(self,desde, para , cantidad):
+
+        id_prestamo = self.existe_prestamo(desde, para)
         if not id_prestamo == -1:
+            self.sumar(id_prestamo,cantidad)
+            return "Se ha aumentado el prestamo desde: "+desde+" hacia :"+para+"."
+
+        else :
+            self.insertar(desde , para, cantidad)
+            return "Se ha registrado un prestamo desde: " + desde + " hacia :" + para + "."
+
+        id_prestamo = self.existe_prestamo(para, desde)
+        if not id_prestamo == -1:
+            monto = self.monto_prestamo(id_prestamo)
+            if monto == cantidad:
+                self.eliminar(id_prestamo)
+
+            elif monto > cantidad:
+                self.restar(id_prestamo, cantidad)
+            elif monto < cantidad:
+                self.eliminar(id_prestamo)
+                self.insertar(desde , para, cantidad - monto )
+
+
+
+
+
 
 
     def sumar(self, id_prestamo, cantidad):
@@ -185,6 +220,7 @@ class Servicios():
         miCursor = c.miConexion.cursor()
         param_list = [ cantidad, id_prestamo]
         miCursor.execute("Update prestamo   Set cantidad = cantidad + %s  where id_prestamo = %s", param_list)
+        c.miConexion.commit()
         miCursor.close()
 
     def restar(self, id_prestamo, cantidad):
@@ -192,6 +228,7 @@ class Servicios():
         miCursor = c.miConexion.cursor()
         param_list = [cantidad, id_prestamo]
         miCursor.execute("Update prestamo   Set cantidad = cantidad - %s  where id_prestamo = %s", param_list)
+        c.miConexion.commit()
         miCursor.close()
 
     def eliminar(self, id_prestamo):
@@ -199,4 +236,21 @@ class Servicios():
         miCursor = c.miConexion.cursor()
         param_list = [id_prestamo]
         miCursor.execute("Delete FROM public.prestamo WHERE id_prestamo = %s", param_list)
+        c.miConexion.commit()
+        miCursor.close()
+
+    def insertar(self, desde , para, cantidad):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [ desde , para, cantidad]
+        miCursor.execute("Update prestamo   Set cantidad = cantidad + %s  where id_prestamo = %s", param_list)
+        c.miConexion.commit()
+        miCursor.close()
+
+    def insertar_persona(self, id_telegram , username ):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [  username , id_telegram ]
+        miCursor.execute("INSERT INTO public.usuario(nombre_usuario, id_telegram) VALUES (%s, %s)", param_list)
+        c.miConexion.commit()
         miCursor.close()
