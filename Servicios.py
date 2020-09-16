@@ -157,28 +157,46 @@ class Servicios():
             existe = True
         miCursor.close()
         return existe
-		
-	def existe_prestamo(self,desde,para):
-	    existe = False
-	    c = Conexion.Conexion()
-        miCursor = c.miConexion.cursor()
-        param_list = [desde,para]
-        miCursor.execute("SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = %s AND para = %s",param_list)
-        tabla = miCursor.fetchall() 
-        for row in tabla:
-            existe = True
-        miCursor.close()
-        return existe	
-		
-	def prestar(self,desde,para,cantidad):
-	    c = Conexion.Conexion()
-        miCursor = c.miConexion.cursor()
-		param_list = [desde,para,cantidad]
-     	if self.existe_prestamo(desde,para)
-		   miCursor.execute("SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = %s AND para = %s",param_list)   
-		
 
-		
-	
-		
-	
+    def existe_prestamo(self , desde , para):
+        existe = -1
+        c = Conexion.Conexion()
+
+        miCursor = c.miConexion.cursor()
+        param_list = [desde, para]
+        miCursor.execute("SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = %s AND para = %s",param_list)
+        tabla = miCursor.fetchall()
+        for row in tabla:
+             existe = row[0]
+
+        miCursor.close()
+        return existe
+
+    def prestar(self,desde, para , cantidad):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor
+
+        id_prestamo = self.existe_prestamo()
+        if not id_prestamo == -1:
+
+
+    def sumar(self, id_prestamo, cantidad):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [ cantidad, id_prestamo]
+        miCursor.execute("Update prestamo   Set cantidad = cantidad + %s  where id_prestamo = %s", param_list)
+        miCursor.close()
+
+    def restar(self, id_prestamo, cantidad):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [cantidad, id_prestamo]
+        miCursor.execute("Update prestamo   Set cantidad = cantidad - %s  where id_prestamo = %s", param_list)
+        miCursor.close()
+
+    def eliminar(self, id_prestamo):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [id_prestamo]
+        miCursor.execute("Delete FROM public.prestamo WHERE id_prestamo = %s", param_list)
+        miCursor.close()
