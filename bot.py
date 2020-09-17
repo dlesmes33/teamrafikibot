@@ -29,11 +29,11 @@ def main():
             if info.id_persona == 837689725:
                 if paso == "0":
                     if texto == "/agregar":
-                        paso = "1"
+                        servicio.set_variable("paso","1")
                         enviar_mensaje(info.id_chat, "Escriba el nombre de usuario")
 
                     elif texto == "/prestar":
-                        paso = "3"
+                        servicio.set_variable("paso","3")
                         enviar_mensaje(info.id_chat, "Escriba el nombre del que va a prestar")
 
                     elif texto == "/rotar":
