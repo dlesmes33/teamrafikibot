@@ -76,11 +76,13 @@ def main():
 
 
                 elif paso == 3:
-                    lista_un =  lista_un = servicio.lista_de_personas()
-                    if 
-                    servicio.set_variable("p1", texto)
-                    enviar_mensaje(info.id_chat, "Escribe el nombre de usuario del que va a recibir")
-                    servicio.set_variable("paso", "4")
+                    lista_un = servicio.lista_de_personas()
+                    if texto in lista_un:
+                        servicio.set_variable("p1", texto)
+                        enviar_mensaje(info.id_chat, "Escribe el nombre de usuario del que va a recibir")
+                        servicio.set_variable("paso", "4")
+                else:
+                    enviar_mensaje(info.id_chat, "No")
 
 
 
@@ -201,7 +203,7 @@ def info_mensaje(mensaje):
         date = mensaje['message']['date']
     return Info_Mensaje( persona, id_persona , bot, chat, id_chat, tipo_chat, tipo_sms, date,update_id)
 
-
+def obtener_alias
 
 def unix_date(fecha):
         return datetime.fromtimestamp(fecha).time()
