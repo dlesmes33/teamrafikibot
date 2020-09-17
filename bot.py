@@ -61,22 +61,23 @@ def main():
 
                 elif paso == 3:
                     servicio.set_variable("p1", texto)
-                    enviar_mensaje(info.id_chat, "Escribe el nombre del destinatario")
-                    servicio.set_variable("paso", "7")
+                    enviar_mensaje(info.id_chat, "Escribe el nombre de usuario del que va a recibir")
+                    servicio.set_variable("paso", "4")
 
 
 
                 elif paso == 4:
-                    parametro2 = texto
-                    enviar_mensaje(info.id_chat, "Escribe la cantidad")
-                    paso = 5
+                    servicio.set_variable("p2", texto)
+                    enviar_mensaje(info.id_chat, "Escribe la cantidad del monto")
+                    servicio.set_variable("paso", "5")
 
 
                 elif paso == 5:
-                    enviar_mensaje(info.id_chat, "Operacion exitosa")
-                    paso = 0
-                    parametro1 = None
-                    parametro2 = None
+
+                    servicio.prestar(servicio.get_variable("p1"),servicio.get_variable("p2"),float(texto))
+                    enviar_mensaje(info.id_chat, "Operacion realizada.")
+                    servicio.set_variable("paso", "0")
+
 
                 elif paso == 6:
                     a = 0
