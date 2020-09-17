@@ -5,7 +5,7 @@ import Conexion
 
 @Singleton.SingletonDecorator
 class Servicios():
-    def insertar_persona(self, id_telegram , username ):
+    def insertar_persona(self, username,  id_telegram  ):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
         param_list = [username , id_telegram]
