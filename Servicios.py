@@ -100,7 +100,7 @@ class Servicios():
 
     def lista_de_personas(self):
         c = Conexion.Conexion()
-
+        print()
         miCursor = c.miConexion.cursor()
 
         miCursor.execute("SELECT  nombre_usuario FROM usuario ")
@@ -108,7 +108,10 @@ class Servicios():
         personas = []
         for row in tabla:
             personas += row[0]
+
         miCursor.close()
+        print("Personas************")
+        print(personas)
         return personas
 
     def lista_de_id(self):
