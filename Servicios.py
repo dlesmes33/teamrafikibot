@@ -98,6 +98,22 @@ class Servicios():
         c.miConexion.commit()
         miCursor.close()
 
+    def lista_de_personas(self):
+        c = Conexion.Conexion()
+
+        miCursor = c.miConexion.cursor()
+
+        miCursor.execute("SELECT  nombre_usuario FROM usuario ")
+        tabla = miCursor.fetchall()
+        personas = []
+        for row in tabla:
+            personas += row[0]
+        miCursor.close()
+        return personas
+
+    def to_float(self, cadena):
+        return float(cadena)
+
 
 
 
