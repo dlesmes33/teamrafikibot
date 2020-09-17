@@ -94,7 +94,7 @@ class Servicios():
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
         param_list = [ valor, nombre,]
-        miCursor.execute("Update variable set valor = %s where nombre = %s)", param_list)
+        miCursor.execute("Update variable set valor = %s where nombre = %s", param_list)
         c.miConexion.commit()
         miCursor.close()
 
