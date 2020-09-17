@@ -74,7 +74,30 @@ class Servicios():
                 self.restar(id_prestamo, cantidad)
             elif monto < cantidad:
                 self.eliminar(id_prestamo)
-                self.insertar(desde , para, cantidad - monto )
+                self.insertar(desde , para, cantidad - monto)
+
+
+
+    def get_variable(self, nombre):
+        c = Conexion.Conexion()
+
+        miCursor = c.miConexion.cursor()
+        param_list = [nombre]
+        miCursor.execute("SELECT  valor FROM public.variable WHERE nombre = %s ", param_list)
+        tabla = miCursor.fetchall()
+        for row in tabla:
+            existe = row[0]
+        miCursor.close()
+        return existe
+
+    def set_variable(self, nombre, valor):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [ valor, nombre,]
+        miCursor.execute("Update variable set valor = %s where nombre = %s)", param_list)
+        c.miConexion.commit()
+        miCursor.close()
+
 
 
 
