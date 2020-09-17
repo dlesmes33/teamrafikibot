@@ -51,15 +51,13 @@ def main():
                     enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
 
                 elif paso == "2":
-                    if servicio.get_variable("p2") != "None":
-                        Servicios.Servicios.insertar_persona(servicio.get_variable("p2"), texto)
+
+                        servicio.insertar_persona(servicio.get_variable("p1"), texto)
                         enviar_mensaje(info.id_chat, "Operación realizada")
                         servicio.set_variable("paso", "0")
-                        servicio.set_variable("p2", "None")
+                        servicio.set_variable("p1", "None")
 
-                    else:
-                        enviar_mensaje(info.id_chat, "Datos Perdidos")
-                    servicio.set_variable("paso", "0")
+
 
                 elif paso == 3:
                     servicio.set_variable("p1", texto)
