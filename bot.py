@@ -28,8 +28,9 @@ def main():
 
             texto = str(leer_mensaje(sms)).lower()
             if info.id_persona == 837689725:
-                if texto == "/esc"
-                if paso == "0":
+                if texto == "/esc":
+                    servicio.set_variable("paso", "0")
+                elif paso == "0":
                     if texto == "/agregar":
                         servicio.set_variable("paso","1")
                         enviar_mensaje(info.id_chat, "Escriba el nombre de usuario")
