@@ -190,7 +190,8 @@ def info_mensaje(mensaje):
         date = mensaje['message']['date']
     return Info_Mensaje( persona, id_persona , bot, chat, id_chat, tipo_chat, tipo_sms, date,update_id)
 
-def obtener_alias
+def obtener_alias():
+    return ""
 
 def unix_date(fecha):
         return datetime.fromtimestamp(fecha).time()
