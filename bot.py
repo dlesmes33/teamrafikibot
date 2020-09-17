@@ -24,23 +24,6 @@ parametro3 = None
 
 @app.route('/',methods=['Post'])
 def main():
-    sms = request.json
-    info = info_mensaje(sms)
-    if info.tipo_sms == "texto":
-       if info.id_chat == 877561784:
-          enviar_mensaje(837689725, leer_mensaje(sms))
-       elif info.id_chat == 837689725:
-            enviar_mensaje(877561784, leer_mensaje(sms))
-       else:
-            enviar_mensaje(info.id_chat,leer_mensaje(sms))
-    return ''
-
-
-
-
-def eee():
-
-        '''
         paso = 0
         sms = request.json
         info = info_mensaje(sms)
@@ -49,13 +32,13 @@ def eee():
 
         if not info.is_bot and info.tipo_sms == "texto":
             if info.id_persona in lista:
-
                 texto = str(leer_mensaje(sms)).lower()
                 if info.id_persona == '877561784':
                    if paso == 0:
                       if texto == "/agregar":
                            paso = 1
-                           enviar_mensaje(info.id_chat , "Escriba el nombre de usuario")
+                           #enviar_mensaje(info.id_chat , "Escriba el nombre de usuario")
+                           enviar_mensaje(info.id_chat , "Escribe el nombre de usuario que quieres agregar a la BD")
 
                       elif texto == "/prestar":
                            paso = 3
@@ -65,71 +48,65 @@ def eee():
 
                            enviar_mensaje(info.id_chat, "Rotando...")
 
-                      elif texto == "/rotar":
+                      elif texto == "/imprimir":
+                          aux = servicio.imprimir_personas()
+                          enviar_mensaje(info.id_chat,aux)
+                    
+                elif paso == 1:
+                    parametro1 = texto
+                    paso = 2
+                    #enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
 
-                           enviar_mensaje(info.id_chat, "Rotando...")
-
-
-                      elif paso == 1:
-                        parametro1 = texto
-                        paso = 2
-                        enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
-
-                      elif paso == 2:
-                           if parametro1 != None:
-                              Servicios.Servicios.insertar_persona(parametro1,texto)
-                              enviar_mensaje(info.id_chat, "Operación realizada")
-
-                              parametro1 = None
-                           else:
-                              enviar_mensaje(info.id_chat, "Datos Perdidos")
-                           paso = 0
-
-                       elif paso == 3:
-                        parametro1 = texto
-                        enviar_mensaje(info.id_chat, "Escribe el nombre del destinatario")
-                        paso = 4
+                    servicio.insertar_persona(33,parametro1)
+                    paso = 0
+                    enviar_mensaje(info.id_chat, "Insertado")
 
 
 
-                    elif paso == 4:
-                        parametro2 = texto
-                        enviar_mensaje(info.id_chat, "Escribe la cantidad")
-                        paso = 5
+                elif paso == 2:
+                    if parametro1 != None:
+                        Servicios.Servicios.insertar_persona(parametro1,texto)
+                        enviar_mensaje(info.id_chat, "Operación realizada")
 
-
-                    elif paso == 5:
-                        enviar_mensaje(info.id_chat, "Operacion exitosa")
-                        paso = 0
                         parametro1 = None
-                        parametro2 = None
+                    else:
+                        enviar_mensaje(info.id_chat, "Datos Perdidos")
+                    paso = 0
 
-                    elif paso == 6:
-                        a = 0
-                    elif paso == 7:
-                        a = 0
-                    elif paso == 8:
-                        a = 0
-                    elif paso == 9:
-                        a = 0
-                    elif paso == 10:
-                        a = 0
-                    elif paso == 11:
-                        a = 0
-                    elif paso == 12:
-                        a = 0
-                 else:
+                elif paso == 3:
+                    parametro1 = texto
+                    enviar_mensaje(info.id_chat, "Escribe el nombre del destinatario")
+                    paso = 4
 
 
 
-                 str(leer_mensaje(sms)).lower() == "!polerank":
-            if info.id_persona == '877561784':
+                elif paso == 4:
+                    parametro2 = texto
+                    enviar_mensaje(info.id_chat, "Escribe la cantidad")
+                    paso = 5
 
-            if str(leer_mensaje(sms)).lower() == "!polerank":
 
+                elif paso == 5:
+                    enviar_mensaje(info.id_chat, "Operacion exitosa")
+                    paso = 0
+                    parametro1 = None
+                    parametro2 = None
 
+                elif paso == 6:
+                    a = 0
+                elif paso == 7:
+                    a = 0
+                elif paso == 8:
+                    a = 0
+                elif paso == 9:
+                    a = 0
+                elif paso == 10:
+                    a = 0
+                elif paso == 11:
+                    a = 0
+                elif paso == 12:
+                    a = 0
         return ''
-        '''
 
 def leer_mensaje(mensaje):
     texto = mensaje['message']['text']
