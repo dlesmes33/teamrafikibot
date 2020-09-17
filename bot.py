@@ -20,7 +20,7 @@ def main():
     sms = request.json
     info = info_mensaje(sms)
     lista = ['837689725']
-    print(sms)
+    print("************"+leer_mensaje(sms)+"*************")
 
     if not info.is_bot and info.tipo_sms == "texto":
         if info.id_persona in lista:
@@ -96,7 +96,7 @@ def main():
                     a = 0
 
 
-                
+
 
     return ''
 
