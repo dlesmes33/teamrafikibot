@@ -19,14 +19,14 @@ def main():
     paso = servicio.get_variable("paso")
     sms = request.json
     info = info_mensaje(sms)
-    lista = ['837689725']
+    lista = [837689725]
     print("************"+leer_mensaje(sms)+"*************")
 
     if not info.is_bot and info.tipo_sms == "texto":
         if info.id_persona in lista:
 
             texto = str(leer_mensaje(sms)).lower()
-            if info.id_persona == '837689725':
+            if info.id_persona == 837689725:
                 if paso == "0":
                     if texto == "/agregar":
                         paso = "1"
