@@ -28,6 +28,7 @@ def main():
 
             texto = str(leer_mensaje(sms)).lower()
             if info.id_persona == 837689725:
+                if texto == "/esc"
                 if paso == "0":
                     if texto == "/agregar":
                         servicio.set_variable("paso","1")
@@ -64,7 +65,19 @@ def main():
                 elif paso == "2":
                     if not texto in lista:
 
-                        servicio.insertar_persona(servicio.get_variable("p1"), texto)
+                        servicio.set_variable("p2",texto)
+                        enviar_mensaje(info.id_chat, "Va ha hacer el registro de:\nusuario: "+servicio.get_variable("p1")+"\nid_telegram:"+
+                                       servicio.get_variable("p2")+"\nEscriba cualquir cosa para continuar o /esc para cancelar")
+                        servicio.set_variable("paso", "2.5")
+
+                    else:
+
+                        enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /esc para salir")
+
+                elif paso == "2.5":
+                    if not texto in lista:
+
+                        servicio.insertar_persona(servicio.get_variable("p1"),servicio.get_variable )
                         enviar_mensaje(info.id_chat, "Operación realizada")
                         servicio.set_variable("paso", "0")
                         servicio.set_variable("p1", "None")
