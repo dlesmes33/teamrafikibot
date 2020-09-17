@@ -41,6 +41,12 @@ def main():
             elif texto == "/imprimir":
                 aux = servicio.imprimir_personas()
                 enviar_mensaje(info.id_chat,aux)
+			elif texto == "/poninas":
+			    poninas = "¿Qué son estas poninas?"+"\n"+"Las poninas son una estrategia creada con el fin de beneficiar a todos los miembros del equipo que participen en las mismas. Los participantes cada vez que se pueda se unirán y le harán prestados al miembro del equipo de turno para que este se pueda comprar un nuevo paquete de 15. Una vez comprado el paquete, el miembro beneficiado procederá a devolver el dinero que le fue prestado y posteriormente se unirá al resto para ayudar a otro miembro colocándose de último en la cola para recibir nuevos préstamos. Los préstamos se harán en forma de rotación."
+                enviar_mensaje(info.id_chat,poninas)
+			elif texto == "/beneficios":
+			    beneficios = "¿Qué beneficios trae?"+"\n"+"Con esta estrategia cada participante podrá aumentar su capital invertido independientemente de si logra tener referidos o no, además no tendrá que esperar los 5 meses para comprarse un nuevo paquete por el mismo (Al final todos hemos entrado con paquetes de $15 y sin conseguir referidos habría que esperar esos 5 meses para poder comenzar a hacer interés compuesto en solitario)"
+                enviar_mensaje(info.id_chat,beneficios)	
         return ''
 
 def leer_mensaje(mensaje):
