@@ -111,6 +111,19 @@ class Servicios():
         miCursor.close()
         return personas
 
+    def lista_de_id(self):
+        c = Conexion.Conexion()
+
+        miCursor = c.miConexion.cursor()
+
+        miCursor.execute("SELECT  id_telegram FROM usuario ")
+        tabla = miCursor.fetchall()
+        personas = []
+        for row in tabla:
+            personas += row[0]
+        miCursor.close()
+        return personas
+
     def to_float(self, cadena):
         return float(cadena)
 

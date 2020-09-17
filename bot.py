@@ -20,6 +20,7 @@ def main():
     sms = request.json
     info = info_mensaje(sms)
     lista = [837689725]
+
     print("************"+leer_mensaje(sms)+"*************")
 
     if not info.is_bot and info.tipo_sms == "texto":
@@ -44,22 +45,39 @@ def main():
 
                         enviar_mensaje(info.id_chat, "Rotando...")
 
+                    elif texto == "/esc":
+                        servicio.set_variable("paso", "3")
+
+                        enviar_mensaje(info.id_chat, "Inicio...")
+
 
                 elif paso == "1":
-                    servicio.set_variable("p1",texto)
-                    servicio.set_variable("paso","2")
-                    enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
+                    lista_un = servicio.lista_de_personas()
+                    if not texto in lista_un:
+                        servicio.set_variable("p1",texto)
+                        servicio.set_variable("paso","2")
+                        enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
+                    else:
+
+                        enviar_mensaje(info.id_chat, "Ese usuario ya esta registrado intentelo de nuevo o escriba /esc para salir")
 
                 elif paso == "2":
+                    if not texto in lista:
 
                         servicio.insertar_persona(servicio.get_variable("p1"), texto)
                         enviar_mensaje(info.id_chat, "Operación realizada")
                         servicio.set_variable("paso", "0")
                         servicio.set_variable("p1", "None")
+                    else:
+
+                        enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /esc para salir")
+
 
 
 
                 elif paso == 3:
+                    lista_un =  lista_un = servicio.lista_de_personas()
+                    if 
                     servicio.set_variable("p1", texto)
                     enviar_mensaje(info.id_chat, "Escribe el nombre de usuario del que va a recibir")
                     servicio.set_variable("paso", "4")
