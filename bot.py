@@ -81,15 +81,15 @@ def main():
                         servicio.set_variable("p1", texto)
                         enviar_mensaje(info.id_chat, "Escribe el nombre de usuario del que va a recibir")
                         servicio.set_variable("paso", "4")
-                else:
-                    enviar_mensaje(info.id_chat, "No")
+                    else:
+                        enviar_mensaje(info.id_chat, "No")
 
 
 
-                elif paso == 4:
-                    servicio.set_variable("p2", texto)
-                    enviar_mensaje(info.id_chat, "Escribe la cantidad del monto")
-                    servicio.set_variable("paso", "5")
+                elif paso == "4":
+                     servicio.set_variable("p2", texto)
+                     enviar_mensaje(info.id_chat, "Escribe la cantidad del monto")
+                     servicio.set_variable("paso", "5")
 
 
                 elif paso == 5:
@@ -99,20 +99,7 @@ def main():
                     servicio.set_variable("paso", "0")
 
 
-                elif paso == 6:
-                    a = 0
-                elif paso == 7:
-                    a = 0
-                elif paso == 8:
-                    a = 0
-                elif paso == 9:
-                    a = 0
-                elif paso == 10:
-                    a = 0
-                elif paso == 11:
-                    a = 0
-                elif paso == 12:
-                    a = 0
+
 
 
 
