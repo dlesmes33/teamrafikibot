@@ -121,7 +121,7 @@ def main():
                     if not num == -1:
                         servicio.set_variable("p3", texto)
 
-                        enviar_mensaje(info.id_chat, "Va a realizar un prestamo desde: "+servicio.get_variable("p1")+" hacia: "+servicio.get_variable("p2")+" por un valor de "++servicio.get_variable("p3")+ "Precione cualquier cosa para continuar o /esc para salir")
+                        enviar_mensaje(info.id_chat, "Va a realizar un prestamo desde: "+servicio.get_variable("p1")+" hacia: "+servicio.get_variable("p2")+" por un valor de "+servicio.get_variable("p3")+ "Precione cualquier cosa para continuar o /esc para salir")
                         servicio.set_variable("paso", "5.6")
                     else:
                         enviar_mensaje(info.id_chat,"El numero debe ser positivo y '.'para marcar los decimales intente de nuevo o /esc para salir")
