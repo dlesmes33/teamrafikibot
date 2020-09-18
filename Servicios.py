@@ -129,7 +129,21 @@ class Servicios():
         return personas
 
     def to_float(self, cadena):
-        return float(cadena)
+        try:
+            num = float(cadena)
+            if num < 0:
+                num = -1
+            return num
+        except ValueError:
+            return -1
+
+    def id_un(self ,cadena="@a"):
+        estado = False
+        un = cadena[1:]
+        print(un)
+        if cadena[0] == '@' and un.__len__() > 4 and un.isidentifier():
+            estado = True
+        return estado
 
 
 
