@@ -139,8 +139,11 @@ def reportes(comando):
     if comando == "/llamar":
         texto = ListaOrganizada()
 
-    if comando == "/poninas":
-        texto = ""
+    elif comando == "/poninas":
+        texto = "Que son estas poninas?"+"\n"+"Las poninas son una estrategia creada con el fin de beneficiar a todos los miembros del equipo que participen en las mismas. Los participantes cada vez que se pueda se uniran y le haran prestados al miembro del equipo de turno para que este se pueda comprar un nuevo paquete de 15. Una vez comprado el paquete, el miembro beneficiado procedera a devolver el dinero que le fue prestado y posteriormente se unira al resto para ayudar a otro miembro colocandose de ultimo en la cola para recibir nuevos prestamos. Los prestamos se haran en forma de rotacion."
+
+    elif comando == "/beneficios":
+        texto = "Que beneficios trae?"+"\n"+"Con esta estrategia cada participante podra aumentar su capital invertido independientemente de si logra tener referidos o no, ademas no tendra que esperar los 5 meses para comprarse un nuevo paquete por el mismo (Al final todos hemos entrado con paquetes de $15 y sin conseguir referidos habra que esperar esos 5 meses para poder comenzar a hacer interes compuesto en solitario)"
 
     return texto
 
