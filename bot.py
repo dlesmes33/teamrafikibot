@@ -51,6 +51,11 @@ def main():
                         servicio.set_variable("paso", "3")
 
                         enviar_mensaje(info.id_chat, "Inicio...")
+                    else:
+                       reporte =  reportes(texto)
+                       if not reporte == "":
+                           enviar_mensaje(info.id_chat, reporte)
+
 
 
                 elif paso == "1":
@@ -112,6 +117,15 @@ def main():
                     enviar_mensaje(info.id_chat, "Operacion realizada.")
                     servicio.set_variable("paso", "0")
 
+            else:
+                reporte = reportes(texto)
+                if not reporte == "":
+                    enviar_mensaje(info.id_chat, reporte)
+
+        else:
+            enviar_mensaje(info.id_chat, "Que bonito día...")
+
+
 
 
 
@@ -119,6 +133,23 @@ def main():
 
 
     return ''
+
+def reportes(comando):
+    texto = ""
+    if comando == "/llamar":
+        texto = ListaOrganizada()
+
+    if comando == "/poninas":
+        texto = ""
+
+    return texto
+
+def ListaOrganizada():
+    texto = ""
+    for nombre in servicio.lista_de_personas():
+        texto += nombre +"\n"
+    return texto
+
 
 
 
