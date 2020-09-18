@@ -94,28 +94,43 @@ def main():
 
 
 
-                elif paso == 3:
+                elif paso == "3":
                     lista_un = servicio.lista_de_personas()
                     if texto in lista_un:
                         servicio.set_variable("p1", texto)
                         enviar_mensaje(info.id_chat, "Escribe el nombre de usuario del que va a recibir")
                         servicio.set_variable("paso", "4")
                     else:
-                        enviar_mensaje(info.id_chat, "No")
+                        enviar_mensaje(info.id_chat, "Ese usuario no esta registrado intente de nuevo o /esc para salir")
 
 
 
                 elif paso == "4":
-                     servicio.set_variable("p2", texto)
-                     enviar_mensaje(info.id_chat, "Escribe la cantidad del monto")
-                     servicio.set_variable("paso", "5")
+                    lista_un = servicio.lista_de_personas()
+                    if texto in lista_un:
+                       servicio.set_variable("p2", texto)
+                       enviar_mensaje(info.id_chat, "Escribe la cantidad del monto")
+                       servicio.set_variable("paso", "5")
+                    else:
+                        enviar_mensaje(info.id_chat,
+                                       "Ese usuario no esta registrado intente de nuevo o /esc para salir")
 
 
-                elif paso == 5:
+                elif paso == "5":
+                    num = servicio.to_float(texto)
+                    if not num == -1:
+                        servicio.set_variable("p3", texto)
 
-                    servicio.prestar(servicio.get_variable("p1"),servicio.get_variable("p2"),float(texto))
+                        enviar_mensaje(info.id_chat, "Va a realizar un prestamo desde: "+servicio.get_variable("p1")+" hacia: "+servicio.get_variable("p2")+" por un valor de "++servicio.get_variable("p3")+ "Precione cualquier cosa para continuar o /esc para salir")
+                        servicio.set_variable("paso", "5.6")
+                    else:
+                        enviar_mensaje(info.id_chat,"El numero debe ser positivo y '.'para marcar los decimales intente de nuevo o /esc para salir")
+
+                elif paso == "5.6":
+                    servicio.prestar(servicio.get_variable("p1"), servicio.get_variable("p2"), float(servicio.get_variable("p3")))
                     enviar_mensaje(info.id_chat, "Operacion realizada.")
                     servicio.set_variable("paso", "0")
+
 
             else:
                 reporte = reportes(texto)
