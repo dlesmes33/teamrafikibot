@@ -83,7 +83,7 @@ def main():
                 elif paso == "2.5":
                     if not texto in lista:
 
-                        servicio.insertar_persona(servicio.get_variable("p1"),servicio.get_variable )
+                        servicio.insertar_persona(servicio.get_variable("p1"),servicio.get_variable("p2") )
                         enviar_mensaje(info.id_chat, "Operación realizada")
                         servicio.set_variable("paso", "0")
                         servicio.set_variable("p1", "None")
