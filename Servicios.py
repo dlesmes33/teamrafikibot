@@ -201,21 +201,26 @@ class Servicios():
         c.miConexion.commit()
         miCursor.close()
 
-	def rotar(self)
-	    c = Conexion.Conexion()
-        miCursor = c.miConexion.cursor()
-        persona_actual = get_variable(persona_actual_rotacion)
-		miCursor.execute("SELECT COUNT(id_usuario) FROM public.usuario;")
-  		tabla = miCursor.fetchall()
-        for row in tabla:
-            cant_personas = row[0]
-		miCursor.close()
-		if persona actual == cant_personas: 
-		    nuevo_actual = 1
-        else:
-            nuevo_actual = persona_actual + 1
-        set_variable(persona_actual_rotacion,nuevo_actual)			
-        return existe
+    def rotar(self):
+         c = Conexion.Conexion()
+         miCursor = c.miConexion.cursor()
+         persona_actual = self.get_variable("persona_actual_rotacion")
+         miCursor.execute("SELECT COUNT(id_usuario) FROM public.usuario;")
+         tabla = miCursor.fetchall()
+
+         for row in tabla:
+             cant_personas = row[0]
+             miCursor.close()
+             if persona_actual == cant_personas:
+                nuevo_actual = 1
+
+             else:
+                 nuevo_actual = persona_actual + 1
+                 self.set_variable("persona_actual_rotacion", nuevo_actual)
+
+
+
+
 	
     '''
     def puntuacion(self,grupo):
