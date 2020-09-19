@@ -204,7 +204,7 @@ class Servicios():
     def rotar(self):
          c = Conexion.Conexion()
          miCursor = c.miConexion.cursor()
-         persona_actual = self.get_variable("persona_actual_rotacion")
+         persona_actual = int(self.get_variable("persona_actual_rotacion"))
          miCursor.execute("SELECT COUNT(id_usuario) FROM public.usuario;")
          tabla = miCursor.fetchall()
 
