@@ -59,3 +59,10 @@ SELECT nombre, valor FROM public.variable;
 UPDATE public.variable SET nombre=?, valor=? WHERE nombre = varx;
 
 DELETE FROM public.variable	WHERE nombre = varx;
+
+INSERT INTO public.usuario(nombre_usuario, id_telegram)
+	VALUES ('@rafiki33', '877561784');
+	INSERT INTO public.usuario(nombre_usuario, id_telegram)
+	VALUES ('@kunkkaharden', '837689725');
+	INSERT INTO public.usuario(nombre_usuario, id_telegram)
+	VALUES ('@ichitabel', '478936527');

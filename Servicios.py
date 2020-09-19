@@ -5,7 +5,7 @@ import Conexion
 
 @Singleton.SingletonDecorator
 class Servicios():
-    def insertar_persona(self, id_telegram , username ):
+    def insertar_persona(self, username,  id_telegram  ):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
         param_list = [username , id_telegram]
@@ -31,7 +31,7 @@ class Servicios():
 
         miCursor = c.miConexion.cursor()
         param_list = [desde, para]
-        miCursor.execute("SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = %s AND para = %s",param_list)
+        miCursor.execute("SELECT id_prestamo FROM public.prestamo WHERE desde = %s AND para = %s",param_list)
         tabla = miCursor.fetchall()
         for row in tabla:
              existe = row[0]
@@ -53,28 +53,36 @@ class Servicios():
         miCursor.close()
         return existe
 
-    def prestar(self,desde, para , cantidad):
+    def prestar(self,desde_un, para_un , cantidad):
+        desde = self.get_userId(desde_un)
+        para = self.get_userId(para_un)
+        texto = ""
 
-        id_prestamo = self.existe_prestamo(desde, para)
-        if not id_prestamo == -1:
-            self.sumar(id_prestamo,cantidad)
-            return "Se ha aumentado el prestamo desde: "+desde+" hacia :"+para+"."
+        id_prestamo_ida = self.existe_prestamo(desde, para)
+        id_prestamo_vuelta = self.existe_prestamo(para, desde)
+        if not id_prestamo_ida == -1:
+            self.sumar(id_prestamo_ida, cantidad)
+            texto = "Se ha aumentado el prestamo desde: "+desde_un+" hacia :"+para_un+"."
 
-        else :
+        elif id_prestamo_vuelta == -1:
             self.insertar(desde , para, cantidad)
-            return "Se ha registrado un prestamo desde: " + desde + " hacia :" + para + "."
+            texto = "Se ha registrado un prestamo desde: " + desde_un + " hacia :" + para_un + "."
 
-        id_prestamo = self.existe_prestamo(para, desde)
-        if not id_prestamo == -1:
-            monto = self.monto_prestamo(id_prestamo)
+        else:
+            monto = self.monto_prestamo(id_prestamo_vuelta)
             if monto == cantidad:
-                self.eliminar(id_prestamo)
-
+                self.eliminar(id_prestamo_vuelta)
+                texto = "Se ha eliminado un prestamo desde: " + para_un + " hacia :" + desde_un + "."
             elif monto > cantidad:
-                self.restar(id_prestamo, cantidad)
+                self.restar(id_prestamo_vuelta, cantidad)
+                texto = "Se ha devuelto una parte desde: " + para_un + " hacia :" + desde_un + "."
             elif monto < cantidad:
-                self.eliminar(id_prestamo)
+                self.eliminar(id_prestamo_vuelta)
                 self.insertar(desde , para, cantidad - monto)
+                texto = "Se ha realizado un prestamo desde: " + desde_un + " hacia :" + para_un + "."
+
+        return texto
+
 
 
 
@@ -94,9 +102,65 @@ class Servicios():
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
         param_list = [ valor, nombre,]
-        miCursor.execute("Update variable set valor = %s where nombre = %s)", param_list)
+        miCursor.execute("Update variable set valor = %s where nombre = %s", param_list)
         c.miConexion.commit()
         miCursor.close()
+
+    def get_userId(self, username):
+        c = Conexion.Conexion()
+
+        miCursor = c.miConexion.cursor()
+        param_list = [username]
+        miCursor.execute("SELECT  id_usuario FROM public.usuario WHERE nombre_usuario = %s ", param_list)
+        tabla = miCursor.fetchall()
+        for row in tabla:
+            existe = row[0]
+        miCursor.close()
+        return existe
+
+
+    def lista_de_personas(self):
+        c = Conexion.Conexion()
+
+        miCursor = c.miConexion.cursor()
+
+        miCursor.execute("SELECT  nombre_usuario FROM usuario ")
+        tabla = miCursor.fetchall()
+        personas = []
+        for row in tabla:
+            personas += [row[0]]
+        miCursor.close()
+        return personas
+
+    def lista_de_id(self):
+        c = Conexion.Conexion()
+
+        miCursor = c.miConexion.cursor()
+
+        miCursor.execute("SELECT  id_telegram FROM usuario ")
+        tabla = miCursor.fetchall()
+        personas = []
+        for row in tabla:
+            personas += [row[0]]
+        miCursor.close()
+        return personas
+
+    def to_float(self, cadena):
+        try:
+            num = float(cadena)
+            if num < 0:
+                num = -1
+            return num
+        except ValueError:
+            return -1
+
+    def validar_nombreUsuario(self ,cadena="@a"):
+        estado = False
+        un = cadena[1:]
+        print(un)
+        if cadena[0] == '@' and un.__len__() > 4 and un.isidentifier():
+            estado = True
+        return estado
 
 
 
@@ -129,14 +193,30 @@ class Servicios():
         c.miConexion.commit()
         miCursor.close()
 
-    def insertar(self, desde , para, cantidad):
+    def insertar_prestamo(self, desde , para, cantidad):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
         param_list = [ desde , para, cantidad]
-        miCursor.execute("Update prestamo   Set cantidad = cantidad + %s  where id_prestamo = %s", param_list)
+        miCursor.execute("INSERT INTO prestamo(desde,para,cantidad) VALUES (%s, %s,%s)", param_list)
         c.miConexion.commit()
         miCursor.close()
 
+	def rotar(self)
+	    c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        persona_actual = get_variable(persona_actual_rotacion)
+		miCursor.execute("SELECT COUNT(id_usuario) FROM public.usuario;")
+  		tabla = miCursor.fetchall()
+        for row in tabla:
+            cant_personas = row[0]
+		miCursor.close()
+		if persona actual == cant_personas: 
+		    nuevo_actual = 1
+        else:
+            nuevo_actual = persona_actual + 1
+        set_variable(persona_actual_rotacion,nuevo_actual)			
+        return existe
+	
     '''
     def puntuacion(self,grupo):
         c = Conexion.Conexion()
