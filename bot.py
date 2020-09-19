@@ -138,8 +138,7 @@ def main():
                 if not reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
 
-        else:
-            enviar_mensaje(info.id_chat, ":eyes:")
+        
 
 
 
