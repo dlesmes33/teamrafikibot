@@ -19,7 +19,7 @@ def main():
     paso = servicio.get_variable("paso")
     sms = request.json
     info = info_mensaje(sms)
-    lista = [837689725]
+    lista = servicio.lista_de_personas()
 
     print(sms)
 
@@ -27,7 +27,7 @@ def main():
         if info.id_persona in lista:
 
             texto = str(leer_mensaje(sms)).lower()
-            if info.id_persona == 837689725:
+            if info.id_persona == 877561784:
                 if texto == "/esc":
                     servicio.set_variable("paso", "0")
                     enviar_mensaje(info.id_chat, "Inicio...")
