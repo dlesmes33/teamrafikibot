@@ -228,7 +228,7 @@ class Servicios():
         tabla = miCursor.fetchall()
         personas = []
         for row in tabla:
-            personas += row
+            personas += [row]
         miCursor.close()
         print("*****************")
         print(personas)
