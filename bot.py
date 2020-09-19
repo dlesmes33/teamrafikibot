@@ -20,6 +20,9 @@ def main():
     sms = request.json
     info = info_mensaje(sms)
     lista = servicio.lista_de_id()
+    print(lista)
+    print(str(info.id_persona))
+
 
     print(sms)
 
