@@ -56,28 +56,33 @@ class Servicios():
     def prestar(self,desde_un, para_un , cantidad):
         desde = self.get_userId(desde_un)
         para = self.get_userId(para_un)
+        texto = ""
 
+        id_prestamo_ida = self.existe_prestamo(desde, para)
+        id_prestamo_vuelta = self.existe_prestamo(para, desde)
+        if not id_prestamo_ida == -1:
+            self.sumar(id_prestamo_ida, cantidad)
+            texto = "Se ha aumentado el prestamo desde: "+desde_un+" hacia :"+para_un+"."
 
-        id_prestamo = self.existe_prestamo(desde, para)
-        if not id_prestamo == -1:
-            self.sumar(id_prestamo,cantidad)
-            return "Se ha aumentado el prestamo desde: "+desde+" hacia :"+para+"."
-
-        else :
+        elif id_prestamo_vuelta == -1:
             self.insertar(desde , para, cantidad)
-            return "Se ha registrado un prestamo desde: " + desde + " hacia :" + para + "."
+            texto = "Se ha registrado un prestamo desde: " + desde_un + " hacia :" + para_un + "."
 
-        id_prestamo = self.existe_prestamo(para, desde)
-        if not id_prestamo == -1:
-            monto = self.monto_prestamo(id_prestamo)
+        else:
+            monto = self.monto_prestamo(id_prestamo_vuelta)
             if monto == cantidad:
-                self.eliminar(id_prestamo)
-
+                self.eliminar(id_prestamo_vuelta)
+                texto = "Se ha eliminado un prestamo desde: " + para_un + " hacia :" + desde_un + "."
             elif monto > cantidad:
-                self.restar(id_prestamo, cantidad)
+                self.restar(id_prestamo_vuelta, cantidad)
+                texto = "Se ha devuelto un prestamo desde: " + para_un + " hacia :" + desde_un + "."
             elif monto < cantidad:
-                self.eliminar(id_prestamo)
+                self.eliminar(id_prestamo_vuelta)
                 self.insertar(desde , para, cantidad - monto)
+                texto = "Se ha realizado un prestamo desde: " + desde_un + " hacia :" + para_un + "."
+
+        return texto
+
 
 
 
@@ -153,7 +158,7 @@ class Servicios():
         except ValueError:
             return -1
 
-    def id_un(self ,cadena="@a"):
+    def validar_nombreUsuario(self ,cadena="@a"):
         estado = False
         un = cadena[1:]
         print(un)
