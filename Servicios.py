@@ -53,7 +53,10 @@ class Servicios():
         miCursor.close()
         return existe
 
-    def prestar(self,desde, para , cantidad):
+    def prestar(self,desde_un, para_un , cantidad):
+        desde = self.get_userId(desde_un)
+        para = self.get_userId(para_un)
+
 
         id_prestamo = self.existe_prestamo(desde, para)
         if not id_prestamo == -1:
@@ -97,6 +100,19 @@ class Servicios():
         miCursor.execute("Update variable set valor = %s where nombre = %s", param_list)
         c.miConexion.commit()
         miCursor.close()
+
+    def get_userId(self, username):
+        c = Conexion.Conexion()
+
+        miCursor = c.miConexion.cursor()
+        param_list = [username]
+        miCursor.execute("SELECT  valor FROM public.usuario WHERE nombre_usuario = %s ", param_list)
+        tabla = miCursor.fetchall()
+        for row in tabla:
+            existe = row[0]
+        miCursor.close()
+        return existe
+
 
     def lista_de_personas(self):
         c = Conexion.Conexion()
