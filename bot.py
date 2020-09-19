@@ -164,6 +164,8 @@ def reportes(comando):
          texto ="¿Cuál sería inicialmente la meta?"+"\n"+"La meta inicial es que cada miembro llegue a la suma de $75 dólares invertidos (5 paquetes de 15), ya que de esta forma sus ganancias mensuales serán aproximadamente de $15 dólares por lo que podrá hacer interés compuesto y así aumentar sus ganancias exponencialmente, pues cada mes podrá comprar un nuevo paquete de 15. Esto no significa que una vez cumplida la meta el miembro tendría que retirarse de las poninas " 
     elif comando == "/interes_compuesto" or "/interes_compuesto@TeamRafikiBot":
          texto ="¿Qué es el interés compuesto?"+"\n"+"El interés compuesto consiste en reinvertir tus ganancias siempre que puedas y de esta forma aumentar exponencialmente tus ganancias cada vez que puedas y al tener más capital invertido, al mes siguiente tener mayores ganancias."
+    else:
+        texto =""
     return texto
 
 def ListaOrganizada():
