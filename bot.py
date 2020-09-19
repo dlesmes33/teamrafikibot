@@ -32,6 +32,8 @@ def main():
 
             texto = str(leer_mensaje(sms)).lower()
             if info.id_persona == 877561784:
+                enviar_mensaje(info.id_chat, "Admin")
+                enviar_mensaje(info.id_chat, texto)
                 if texto == "/esc":
                     servicio.set_variable("paso", "0")
                     enviar_mensaje(info.id_chat, "Inicio...")
@@ -136,6 +138,7 @@ def main():
 
 
             else:
+                enviar_mensaje(info.id_chat, "Tipo random")
                 reporte = reportes(texto)
                 if  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
