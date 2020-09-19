@@ -30,6 +30,7 @@ def main():
             if info.id_persona == 837689725:
                 if texto == "/esc":
                     servicio.set_variable("paso", "0")
+                    enviar_mensaje(info.id_chat, "Inicio...")
                 elif paso == "0":
                     if texto == "/agregar":
                         servicio.set_variable("paso","1")
@@ -53,8 +54,8 @@ def main():
                         enviar_mensaje(info.id_chat, "Inicio...")
                     else:
                        reporte =  reportes(texto)
-                       if not reporte == "":
-                           enviar_mensaje(info.id_chat, "que esta pasando")
+                       if  reporte == "":
+                           enviar_mensaje(info.id_chat,reporte(texto))
 
 
 
@@ -135,7 +136,7 @@ def main():
 
             else:
                 reporte = reportes(texto)
-                if not reporte == "":
+                if  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
 
 
