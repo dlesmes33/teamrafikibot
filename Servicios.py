@@ -216,7 +216,8 @@ class Servicios():
 
              else:
                  nuevo_actual = persona_actual + 1
-                 self.set_variable("persona_actual_rotacion", nuevo_actual)
+
+             self.set_variable("persona_actual_rotacion", nuevo_actual)
 
 
 
