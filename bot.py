@@ -65,7 +65,7 @@ def main():
                 elif paso == "1":
                     lista_un = servicio.lista_de_personas()
 
-                    if not texto in lista_un or not servicio.validar_nombreUsuario(texto):
+                    if not texto in lista_un and  servicio.validar_nombreUsuario(texto):
                         servicio.set_variable("p1",texto)
                         servicio.set_variable("paso","2")
                         enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
@@ -156,6 +156,8 @@ def main():
     return ''
 
 def reportes(comando):
+    enviar_mensaje(info.id_chat, "Entro a funcion reporte")
+
     texto = ""
     if comando == "/llamar" or "/llamar@TeamRafikiBot":
         texto = ListaOrganizada()
@@ -172,6 +174,7 @@ def reportes(comando):
          texto ="¿Qué es el interés compuesto?"+"\n"+"El interés compuesto consiste en reinvertir tus ganancias siempre que puedas y de esta forma aumentar exponencialmente tus ganancias cada vez que puedas y al tener más capital invertido, al mes siguiente tener mayores ganancias."
     else:
         texto =""
+        enviar_mensaje(info.id_chat, "Entro a funcion reporte te4xto :" +texto)
     return texto
 
 def ListaOrganizada():
