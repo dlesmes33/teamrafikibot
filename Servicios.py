@@ -197,12 +197,11 @@ class Servicios():
         c.miConexion.commit()
         miCursor.close()
 
-    def insertar(self, desde , para, cantidad):
+    def insertar_prestamo(self, desde , para, cantidad):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
         param_list = [ desde , para, cantidad]
         miCursor.execute("INSERT INTO prestamo(desde,para,cantidad) VALUES (%s, %s,%s)", param_list)
-        miCursor.execute("Update prestamo   Set cantidad = cantidad + %s  where id_prestamo = %s", param_list)
         c.miConexion.commit()
         miCursor.close()
 
