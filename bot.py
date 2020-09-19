@@ -139,7 +139,7 @@ def main():
                     enviar_mensaje(info.id_chat, reporte)
 
         else:
-            enviar_mensaje(info.id_chat, "Que bonito día...")
+            enviar_mensaje(info.id_chat, ":eyes:")
 
 
 

@@ -75,7 +75,7 @@ class Servicios():
                 texto = "Se ha eliminado un prestamo desde: " + para_un + " hacia :" + desde_un + "."
             elif monto > cantidad:
                 self.restar(id_prestamo_vuelta, cantidad)
-                texto = "Se ha devuelto un prestamo desde: " + para_un + " hacia :" + desde_un + "."
+                texto = "Se ha devuelto una parte desde: " + para_un + " hacia :" + desde_un + "."
             elif monto < cantidad:
                 self.eliminar(id_prestamo_vuelta)
                 self.insertar(desde , para, cantidad - monto)
