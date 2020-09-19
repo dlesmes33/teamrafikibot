@@ -54,7 +54,7 @@ def main():
                     else:
                        reporte =  reportes(texto)
                        if not reporte == "":
-                           enviar_mensaje(info.id_chat, reporte)
+                           enviar_mensaje(info.id_chat, "que esta pasando")
 
 
 
