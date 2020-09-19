@@ -139,7 +139,7 @@ def main():
             else:
 
                 reporte = reportes(texto)
-                if nota  reporte == "":
+                if not  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
 
         else:
