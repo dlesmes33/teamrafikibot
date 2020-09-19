@@ -56,8 +56,8 @@ def main():
 
                     else:
                        reporte =  reportes(texto)
-                       if  reporte == "":
-                           enviar_mensaje(info.id_chat,reporte(texto))
+                       if not reporte == "":
+                           enviar_mensaje(info.id_chat,reporte)
 
 
 
@@ -139,7 +139,7 @@ def main():
             else:
 
                 reporte = reportes(texto)
-                if  reporte == "":
+                if nota  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
 
         else:
