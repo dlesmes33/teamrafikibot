@@ -156,7 +156,7 @@ def main():
     return ''
 
 def reportes(comando):
-    enviar_mensaje(info.id_chat, "Entro a funcion reporte")
+
 
     texto = ""
     if comando == "/llamar" or "/llamar@TeamRafikiBot":
@@ -174,7 +174,7 @@ def reportes(comando):
          texto ="¿Qué es el interés compuesto?"+"\n"+"El interés compuesto consiste en reinvertir tus ganancias siempre que puedas y de esta forma aumentar exponencialmente tus ganancias cada vez que puedas y al tener más capital invertido, al mes siguiente tener mayores ganancias."
     else:
         texto =""
-        enviar_mensaje(info.id_chat, "Entro a funcion reporte te4xto :" +texto)
+    enviar_mensaje(-1001226286053, "Entro a funcion reporte te4xto :" +texto)
     return texto
 
 def ListaOrganizada():
