@@ -31,7 +31,7 @@ class Servicios():
 
         miCursor = c.miConexion.cursor()
         param_list = [desde, para]
-        miCursor.execute("SELECT id_prestamo, desde, para, cantidad FROM public.prestamo WHERE desde = %s AND para = %s",param_list)
+        miCursor.execute("SELECT id_prestamo FROM public.prestamo WHERE desde = %s AND para = %s",param_list)
         tabla = miCursor.fetchall()
         for row in tabla:
              existe = row[0]
