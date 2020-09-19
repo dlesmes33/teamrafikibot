@@ -230,6 +230,7 @@ class Servicios():
         for row in tabla:
             personas += [row[0]]
         miCursor.close()
+        print(personas)
         return personas  
 
 
