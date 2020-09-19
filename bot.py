@@ -19,12 +19,12 @@ def main():
     paso = servicio.get_variable("paso")
     sms = request.json
     info = info_mensaje(sms)
-    lista = servicio.lista_de_personas()
+    lista = servicio.lista_de_id()
 
     print(sms)
 
     if not info.is_bot and info.tipo_sms == "texto":
-        if info.id_persona in lista:
+        if str(info.id_persona) in lista:
 
             texto = str(leer_mensaje(sms)).lower()
             if info.id_persona == 877561784:
@@ -48,10 +48,7 @@ def main():
 
                         enviar_mensaje(info.id_chat, "Rotando...")
 
-                    elif texto == "/esc":
-                        servicio.set_variable("paso", "3")
 
-                        enviar_mensaje(info.id_chat, "Inicio...")
                     else:
                        reporte =  reportes(texto)
                        if  reporte == "":
@@ -62,7 +59,7 @@ def main():
                 elif paso == "1":
                     lista_un = servicio.lista_de_personas()
 
-                    if not texto in lista_un and not servicio.validar_nombreUsuario(texto):
+                    if not texto in lista_un or not servicio.validar_nombreUsuario(texto):
                         servicio.set_variable("p1",texto)
                         servicio.set_variable("paso","2")
                         enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
