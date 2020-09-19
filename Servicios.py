@@ -106,7 +106,7 @@ class Servicios():
 
         miCursor = c.miConexion.cursor()
         param_list = [username]
-        miCursor.execute("SELECT  valor FROM public.usuario WHERE nombre_usuario = %s ", param_list)
+        miCursor.execute("SELECT  id_usuario FROM public.usuario WHERE nombre_usuario = %s ", param_list)
         tabla = miCursor.fetchall()
         for row in tabla:
             existe = row[0]
