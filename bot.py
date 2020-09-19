@@ -28,6 +28,7 @@ def main():
 
     if not info.is_bot and info.tipo_sms == "texto":
         if str(info.id_persona) in lista:
+            enviar_mensaje(info.id_chat, "Entro al if")
 
             texto = str(leer_mensaje(sms)).lower()
             if info.id_persona == 877561784:
@@ -139,7 +140,8 @@ def main():
                 if  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
 
-
+        else:
+            enviar_mensaje(info.id_chat, "No entro al if")
 
 
 
