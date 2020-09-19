@@ -185,7 +185,7 @@ def ListaOrganizada():
 def siguiente():
     texto = ""
     for nombre in servicio.lista_de_personas_orden_rotacion():
-        texto += nombre[1]+" - "+nombre[0] + "\n"
+        texto += str(nombre[1])+" - "+nombre[0] + "\n"
 
     texto += "El proximo miembro en beneficiarse es el: "+servicio.get_variable("persona_actual_rotacion")
     return texto
