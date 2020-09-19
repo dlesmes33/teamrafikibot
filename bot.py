@@ -20,37 +20,36 @@ def main():
     sms = request.json
     info = info_mensaje(sms)
     lista = servicio.lista_de_id()
-    print(lista)
-    print(str(info.id_persona))
+
 
 
     print(sms)
 
     if not info.is_bot and info.tipo_sms == "texto":
         if str(info.id_persona) in lista:
-            enviar_mensaje(info.id_chat, "Entro al if")
+
 
             texto = str(leer_mensaje(sms)).lower()
             if info.id_persona == 877561784:
-                enviar_mensaje(info.id_chat, "Admin")
+
                 enviar_mensaje(info.id_chat, texto)
-                if texto == "/esc":
+                if texto == "/esc" or texto == "/esc@TeamRafikiBot":
                     servicio.set_variable("paso", "0")
                     enviar_mensaje(info.id_chat, "Inicio...")
                 elif paso == "0":
-                    if texto == "/agregar":
+                    if texto == "/agregar" or texto == "/agregar@TeamRafikiBot":
                         servicio.set_variable("paso","1")
                         enviar_mensaje(info.id_chat, "Escriba el nombre de usuario")
 
-                    elif texto == "/prestar":
+                    elif texto == "/prestar" or texto == "/prestar@TeamRafikiBot":
                         servicio.set_variable("paso","3")
                         enviar_mensaje(info.id_chat, "Escriba el nombre del que va a prestar")
 
-                    elif texto == "/rotar":
+                    elif texto == "/rotar" or texto == "/rotar@TeamRafikiBot":
 
                         enviar_mensaje(info.id_chat, "Rotando...")
 
-                    elif texto == "/rotar":
+                    elif texto == "/rotar" or texto == "/rotar@TeamRafikiBot":
 
                         enviar_mensaje(info.id_chat, "Rotando...")
 
@@ -138,7 +137,7 @@ def main():
 
 
             else:
-                enviar_mensaje(info.id_chat, "Tipo random")
+
                 reporte = reportes(texto)
                 if  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
@@ -157,20 +156,18 @@ def main():
 
 def reportes(comando):
 
-
-    texto = ""
-    if comando == "/llamar" or "/llamar@TeamRafikiBot":
+    if comando == "/llamar" or comando == "/llamar@TeamRafikiBot":
         texto = ListaOrganizada()
 
-    elif comando == "/poninas" or "/poninas@TeamRafikiBot":
+    elif comando == "/poninas" or comando == "/poninas@TeamRafikiBot":
         texto = "Que son estas poninas?"+"\n"+"Las poninas son una estrategia creada con el fin de beneficiar a todos los miembros del equipo que participen en las mismas. Los participantes cada vez que se pueda se uniran y le haran prestados al miembro del equipo de turno para que este se pueda comprar un nuevo paquete de 15. Una vez comprado el paquete, el miembro beneficiado procedera a devolver el dinero que le fue prestado y posteriormente se unira al resto para ayudar a otro miembro colocandose de ultimo en la cola para recibir nuevos prestamos. Los prestamos se haran en forma de rotacion."
 
-    elif comando == "/beneficios" or "/beneficios@TeamRafikiBot":
+    elif comando == "/beneficios" or comando =="/beneficios@TeamRafikiBot":
         texto = "Que beneficios trae?"+"\n"+"Con esta estrategia cada participante podra aumentar su capital invertido independientemente de si logra tener referidos o no, ademas no tendra que esperar los 5 meses para comprarse un nuevo paquete por el mismo (Al final todos hemos entrado con paquetes de $15 y sin conseguir referidos habra que esperar esos 5 meses para poder comenzar a hacer interes compuesto en solitario)"
 	
-    elif comando == "/meta" or "/meta@TeamRafikiBot":
+    elif comando == "/meta" or comando == "/meta@TeamRafikiBot":
          texto ="¿Cuál sería inicialmente la meta?"+"\n"+"La meta inicial es que cada miembro llegue a la suma de $75 dólares invertidos (5 paquetes de 15), ya que de esta forma sus ganancias mensuales serán aproximadamente de $15 dólares por lo que podrá hacer interés compuesto y así aumentar sus ganancias exponencialmente, pues cada mes podrá comprar un nuevo paquete de 15. Esto no significa que una vez cumplida la meta el miembro tendría que retirarse de las poninas " 
-    elif comando == "/interes_compuesto" or "/interes_compuesto@TeamRafikiBot":
+    elif comando == "/interes_compuesto" or comando == "/interes_compuesto@TeamRafikiBot":
          texto ="¿Qué es el interés compuesto?"+"\n"+"El interés compuesto consiste en reinvertir tus ganancias siempre que puedas y de esta forma aumentar exponencialmente tus ganancias cada vez que puedas y al tener más capital invertido, al mes siguiente tener mayores ganancias."
     else:
         texto =""
