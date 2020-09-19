@@ -138,7 +138,7 @@ def main():
                 if not reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
 
-        
+
 
 
 
@@ -151,18 +151,18 @@ def main():
 
 def reportes(comando):
     texto = ""
-    if comando == "/llamar":
+    if comando == "/llamar" or "/llamar@TeamRafikiBot":
         texto = ListaOrganizada()
 
-    elif comando == "/poninas":
+    elif comando == "/poninas" or "/poninas@TeamRafikiBot":
         texto = "Que son estas poninas?"+"\n"+"Las poninas son una estrategia creada con el fin de beneficiar a todos los miembros del equipo que participen en las mismas. Los participantes cada vez que se pueda se uniran y le haran prestados al miembro del equipo de turno para que este se pueda comprar un nuevo paquete de 15. Una vez comprado el paquete, el miembro beneficiado procedera a devolver el dinero que le fue prestado y posteriormente se unira al resto para ayudar a otro miembro colocandose de ultimo en la cola para recibir nuevos prestamos. Los prestamos se haran en forma de rotacion."
 
-    elif comando == "/beneficios":
+    elif comando == "/beneficios" or "/beneficios@TeamRafikiBot":
         texto = "Que beneficios trae?"+"\n"+"Con esta estrategia cada participante podra aumentar su capital invertido independientemente de si logra tener referidos o no, ademas no tendra que esperar los 5 meses para comprarse un nuevo paquete por el mismo (Al final todos hemos entrado con paquetes de $15 y sin conseguir referidos habra que esperar esos 5 meses para poder comenzar a hacer interes compuesto en solitario)"
 	
-    elif comando == "/meta":
+    elif comando == "/meta" or "/meta@TeamRafikiBot":
          texto ="¿Cuál sería inicialmente la meta?"+"\n"+"La meta inicial es que cada miembro llegue a la suma de $75 dólares invertidos (5 paquetes de 15), ya que de esta forma sus ganancias mensuales serán aproximadamente de $15 dólares por lo que podrá hacer interés compuesto y así aumentar sus ganancias exponencialmente, pues cada mes podrá comprar un nuevo paquete de 15. Esto no significa que una vez cumplida la meta el miembro tendría que retirarse de las poninas " 
-    elif comando == "/interes_compuesto":
+    elif comando == "/interes_compuesto" or "/interes_compuesto@TeamRafikiBot":
          texto ="¿Qué es el interés compuesto?"+"\n"+"El interés compuesto consiste en reinvertir tus ganancias siempre que puedas y de esta forma aumentar exponencialmente tus ganancias cada vez que puedas y al tener más capital invertido, al mes siguiente tener mayores ganancias."
     return texto
 
