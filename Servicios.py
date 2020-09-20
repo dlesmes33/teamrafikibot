@@ -219,7 +219,18 @@ class Servicios():
 
              self.set_variable("persona_actual_rotacion", nuevo_actual)
 
+    def lista_de_personas_orden_rotacion(self):
+        c = Conexion.Conexion()
 
+        miCursor = c.miConexion.cursor()
+
+        miCursor.execute("SELECT  nombre_usuario,orden_rotacion FROM usuario WHERE orden_rotacion IS NOT NULL ORDER BY orden_rotacion")
+        tabla = miCursor.fetchall()
+        personas = []
+        for row in tabla:
+            personas += [row[0]]
+        miCursor.close()
+        return personas  
 
 
 	
