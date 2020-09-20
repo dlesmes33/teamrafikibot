@@ -205,7 +205,7 @@ class Servicios():
          c = Conexion.Conexion()
          miCursor = c.miConexion.cursor()
          persona_actual = int(self.get_variable("persona_actual_rotacion"))
-         miCursor.execute("SELECT COUNT(id_usuario) FROM public.usuario;")
+         miCursor.execute("SELECT COUNT(orden_rotacion) FROM public.usuario WHERE orden_rotacion != null;")
          tabla = miCursor.fetchall()
 
          for row in tabla:
