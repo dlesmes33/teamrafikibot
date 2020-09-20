@@ -35,7 +35,7 @@ def main():
 
                 if texto == "/cancelar" or texto == "/cancelar@teamrafikibot":
                     servicio.set_variable("paso", "0")
-                    enviar_mensaje(info.id_chat, "Inicio...")
+                    enviar_mensaje(info.id_chat, "Operación cancelada")
                 elif paso == "0":
                     if texto == "/agregar" or texto == "/agregar@teamrafikibot":
                         servicio.set_variable("paso","1")
