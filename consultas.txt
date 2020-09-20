@@ -60,9 +60,30 @@ UPDATE public.variable SET nombre=?, valor=? WHERE nombre = varx;
 
 DELETE FROM public.variable	WHERE nombre = varx;
 
-INSERT INTO public.usuario(nombre_usuario, id_telegram)
-	VALUES ('@rafiki33', '877561784');
-	INSERT INTO public.usuario(nombre_usuario, id_telegram)
-	VALUES ('@kunkkaharden', '837689725');
-	INSERT INTO public.usuario(nombre_usuario, id_telegram)
-	VALUES ('@ichitabel', '478936527');
+
+
+
+/*resetear las tallas*/
+-- Table: public.usuario
+
+-- DROP TABLE public.usuario;
+
+CREATE TABLE public.usuario
+(
+    id_usuario integer NOT NULL DEFAULT nextval('usuario_usuario_id_seq'::regclass),
+    nombre_usuario character varying COLLATE pg_catalog."default" NOT NULL,
+    id_telegram character varying COLLATE pg_catalog."default" NOT NULL,
+    orden_rotacion integer,
+    CONSTRAINT usuario_pkey PRIMARY KEY (id_usuario)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.usuario
+    OWNER to ougzklqezzcdtm;
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+	VALUES ('@rafiki33', '877561784',1);
+	INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+	VALUES ('@kunkkaharden', '837689725',2);
+	INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+	VALUES ('@ichitabel', '478936527',3);
