@@ -33,7 +33,7 @@ def main():
             if info.id_persona == 877561784:
 
 
-                if texto == "/esc" or texto == "/esc@teamrafikibot":
+                if texto == "/cancelar" or texto == "/cancelar@teamrafikibot":
                     servicio.set_variable("paso", "0")
                     enviar_mensaje(info.id_chat, "Inicio...")
                 elif paso == "0":
@@ -71,19 +71,19 @@ def main():
                         enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
                     else:
 
-                        enviar_mensaje(info.id_chat, "Ese usuario ya esta registrado intentelo de nuevo o escriba /esc para salir")
+                        enviar_mensaje(info.id_chat, "Ese usuario ya esta registrado intentelo de nuevo o escriba /cancelar para salir")
 
                 elif paso == "2":
                     if not texto in lista:
 
                         servicio.set_variable("p2",texto)
                         enviar_mensaje(info.id_chat, "Va ha hacer el registro de:\nusuario: "+servicio.get_variable("p1")+"\nid_telegram:"+
-                                       servicio.get_variable("p2")+"\nEscriba cualquir cosa para continuar o /esc para cancelar")
+                                       servicio.get_variable("p2")+"\nEscriba cualquir cosa para continuar o /cancelar para cancelar")
                         servicio.set_variable("paso", "2.5")
 
                     else:
 
-                        enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /esc para salir")
+                        enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /cancelar para salir")
 
                 elif paso == "2.5":
                     if not texto in lista:
@@ -94,7 +94,7 @@ def main():
                         servicio.set_variable("p1", "None")
                     else:
 
-                        enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /esc para salir")
+                        enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /cancelar para salir")
 
 
 
@@ -106,7 +106,7 @@ def main():
                         enviar_mensaje(info.id_chat, "Escribe el nombre de usuario del que va a recibir")
                         servicio.set_variable("paso", "4")
                     else:
-                        enviar_mensaje(info.id_chat, "Ese usuario no esta registrado intente de nuevo o /esc para salir")
+                        enviar_mensaje(info.id_chat, "Ese usuario no esta registrado intente de nuevo o /cancelar para salir")
 
 
 
@@ -118,7 +118,7 @@ def main():
                        servicio.set_variable("paso", "5")
                     else:
                         enviar_mensaje(info.id_chat,
-                                       "Ese usuario no esta registrado intente de nuevo o /esc para salir")
+                                       "Ese usuario no esta registrado intente de nuevo o /cancelar para salir")
 
 
                 elif paso == "5":
@@ -126,10 +126,10 @@ def main():
                     if not num == -1:
                         servicio.set_variable("p3", texto)
 
-                        enviar_mensaje(info.id_chat, "Va a realizar un prestamo desde: "+servicio.get_variable("p1")+" hacia: "+servicio.get_variable("p2")+" por un valor de "+servicio.get_variable("p3")+ "Precione cualquier cosa para continuar o /esc para salir")
+                        enviar_mensaje(info.id_chat, "Va a realizar un prestamo desde: "+servicio.get_variable("p1")+" hacia: "+servicio.get_variable("p2")+" por un valor de "+servicio.get_variable("p3")+ "Precione cualquier cosa para continuar o /cancelar para salir")
                         servicio.set_variable("paso", "5.6")
                     else:
-                        enviar_mensaje(info.id_chat,"El numero debe ser positivo y '.'para marcar los decimales intente de nuevo o /esc para salir")
+                        enviar_mensaje(info.id_chat,"El numero debe ser positivo y '.'para marcar los decimales intente de nuevo o /cancelar para salir")
 
                 elif paso == "5.6":
                     servicio.prestar(servicio.get_variable("p1"), servicio.get_variable("p2"), float(servicio.get_variable("p3")))
