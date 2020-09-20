@@ -50,7 +50,7 @@ def main():
                         servicio.rotar()
                         enviar_mensaje(info.id_chat, "Operación realizada")
 
-                    elif texto == "/agregarPaquete" or texto == "/agregarPaquete@teamrafikibot":
+                    elif texto == "/agregar_paquete" or texto == "/agregar_paquete@teamrafikibot":
 
                         enviar_mensaje(info.id_chat, "Rotando...")
 
