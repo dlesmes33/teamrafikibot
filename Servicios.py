@@ -2,6 +2,7 @@ from Persona import Persona
 import sys,psycopg2
 import Singleton
 import Conexion
+import  datetime
 
 @Singleton.SingletonDecorator
 class Servicios():
@@ -243,6 +244,18 @@ class Servicios():
         print("*****************")
         print(personas)
         return personas
+    def validar_paquete(self,cadena ):
+        bien = False
+        paquetes = [15,30,60,100,300,500,1000,2000,5000,10000,50000,100000]
+        try:
+            num = int(cadena)
+            if num in paquetes:
+                bien = True
+        except TypeError:
+                bien = False
+
+        return bien
+
 
     def fecha(self, cadena="02/12/2009"):
         if not cadena.__len__() == 10:
@@ -271,12 +284,21 @@ class Servicios():
 
 
         except TypeError:
-            raise TypeError
+            return "-1"
         except ValueError:
-            raise TypeError
+            return "-1"
 
         return str(anno) + "-" + str(mes) + "-" + str(dia)
 
+    def insertar_paquete(self, username,  paquete, fecha  ):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        usuario = self.get_userId(username)
+
+        param_list = [usuario, paquete , fecha]
+        miCursor.execute("INSERT INTO paquete(fk_usuario,cantidad , fecha) VALUES (%s, %s, %s)", param_list)
+        c.miConexion.commit()
+        miCursor.close()
 	
     '''
     def puntuacion(self,grupo):
