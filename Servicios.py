@@ -1,5 +1,5 @@
 from Persona import Persona
-import sys
+import sys,psycopg2
 import Singleton
 import Conexion
 
@@ -65,11 +65,11 @@ class Servicios():
             texto = "Se ha aumentado el prestamo desde: "+desde_un+" hacia :"+para_un+"."
 
         elif id_prestamo_vuelta == -1:
-            self.insertar_prestamo(desde , para, str(cantidad))
+            self.insertar_prestamo(desde , para, cantidad)
             texto = "Se ha registrado un prestamo desde: " + desde_un + " hacia :" + para_un + "."
 
         else:
-            monto = float (self.monto_prestamo(id_prestamo_vuelta))
+            monto = float(self.monto_prestamo(id_prestamo_vuelta))
             if monto == cantidad:
                 self.eliminar(id_prestamo_vuelta)
                 texto = "Se ha eliminado un prestamo desde: " + para_un + " hacia :" + desde_un + "."
@@ -78,7 +78,7 @@ class Servicios():
                 texto = "Se ha devuelto una parte desde: " + para_un + " hacia :" + desde_un + "."
             elif monto < cantidad:
                 self.eliminar(id_prestamo_vuelta)
-                self.insertar_prestamo(desde , para, str(cantidad - monto))
+                self.insertar_prestamo(desde , para, cantidad - monto)
                 texto = "Se ha realizado un prestamo desde: " + desde_un + " hacia :" + para_un + "."
 
         return texto
