@@ -251,7 +251,7 @@ class Servicios():
             num = int(cadena)
             if num in paquetes:
                 bien = True
-        except TypeError:
+        except ValueError:
                 bien = False
 
         return bien
