@@ -171,6 +171,8 @@ def reportes(comando):
          texto ="¿Qué es el interés compuesto?"+"\n"+"El interés compuesto consiste en reinvertir tus ganancias siempre que puedas y de esta forma aumentar exponencialmente tus ganancias cada vez que puedas y al tener más capital invertido, al mes siguiente tener mayores ganancias."
     elif comando == "/rotacion" or comando == "/rotacion@teamrafikibot":
          texto = rotacion()
+    elif comando == "/bots" or comando == "/bots@teamrafikibot":
+         texto = "Bots:"+"\n"+"@Trustinvestingschool_bot"+"\n"+"@TrustInvestingEnCuba_bot"
     else:
         texto =""
 
