@@ -51,8 +51,8 @@ def main():
                         enviar_mensaje(info.id_chat, "Operación realizada")
 
                     elif texto == "/agregar_paquete" or texto == "/agregar_paquete@teamrafikibot":
-
-                        enviar_mensaje(info.id_chat, "Rotando...")
+                        enviar_mensaje(info.id_chat, "Escriba el alias del dueño del paquete:")
+                        servicio.set_variable("paso", "6")
 
 
                     else:
@@ -136,7 +136,25 @@ def main():
                     enviar_mensaje(info.id_chat, "Operacion realizada.")
                     servicio.set_variable("paso", "0")
 
+                elif paso == "6":
+                    lista_un = servicio.lista_de_personas()
+                    if texto in lista_un:
+                       servicio.set_variable("p1", texto)
+                       enviar_mensaje(info.id_chat, "Escribe el tipo de paquete")
+                       servicio.set_variable("paso", "7")
+                    else:
+                        enviar_mensaje(info.id_chat,
+                                       "Ese usuario no esta registrado intente de nuevo o /cancelar para salir")
 
+                elif paso == "7":
+                    lista_un = servicio.lista_de_personas()
+                    if texto in lista_un:
+                       servicio.set_variable("p8", texto)
+                       enviar_mensaje(info.id_chat, "Escribe la fecha de compra \n Formato: \n dd/mm/aaaa")
+                       servicio.set_variable("paso", "5")
+                    else:
+                        enviar_mensaje(info.id_chat,
+                                       "Ese usuario no esta registrado intente de nuevo o /cancelar para salir")
             else:
 
                 reporte = reportes(texto)
