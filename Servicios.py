@@ -162,26 +162,36 @@ class Servicios():
             estado = True
         return estado
 
-
-
-
-
+    def castear_cantidad_prestamo (self, id_prestamo):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        param_list = [id_prestamo]
+        miCursor.execute("SELECT cantidad  FROM prestamo  WHERE id_prestamo = %s", param_list)
+        tabla = miCursor.fetchall()
+        for row in tabla:
+            cantidad_casteada = float(row[0])
+        miCursor.close()
+        return cantidad_casteada
 
 
 
     def sumar(self, id_prestamo, cantidad):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
-        param_list = [ cantidad, id_prestamo]
-        miCursor.execute("Update prestamo   Set cantidad = cantidad + %s  where id_prestamo = %s", param_list)
+        cantidad_casteada = self.castear_cantidad_prestamo(id_prestamo)
+        cantidad_casteada += cantidad
+        param_list = [cantidad_casteada, id_prestamo]
+        miCursor.execute("UPDATE prestamo   SET cantidad = %s  WHERE id_prestamo = %s", param_list)
         c.miConexion.commit()
         miCursor.close()
 
     def restar(self, id_prestamo, cantidad):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
-        param_list = [cantidad, id_prestamo]
-        miCursor.execute("Update prestamo   Set cantidad = cantidad - %s  where id_prestamo = %s", param_list)
+        cantidad_casteada = self.castear_cantidad_prestamo(id_prestamo)
+        cantidad_casteada -= cantidad
+        param_list = [cantidad_casteada, id_prestamo]
+        miCursor.execute("UPDATE prestamo   SET cantidad = %s  WHERE id_prestamo = %s", param_list)
         c.miConexion.commit()
         miCursor.close()
 
