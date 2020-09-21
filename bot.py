@@ -159,7 +159,7 @@ def main():
                 elif paso == "8":
                     fecha = servicio.fecha(texto)
                     if not fecha == "-1":
-                        servicio.set_variable("p3", texto)
+                        servicio.set_variable("p3", fecha)
                         enviar_mensaje(info.id_chat, "Va a registraar el paquete /cancelar")
                         servicio.set_variable("paso", "8.5")
                     else:
