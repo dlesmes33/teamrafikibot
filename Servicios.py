@@ -305,7 +305,7 @@ class Servicios():
     def lista_prestamos(self):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
-        miCursor.execute("SELECT  desde,para,cantidad FROM prestamo ")
+        miCursor.execute("SELECT  desde,para,cantidad FROM prestamo ORDER BY desde")
         tabla = miCursor.fetchall()
         prestamos = []
         for row in tabla:
