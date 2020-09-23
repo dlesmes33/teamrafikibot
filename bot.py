@@ -51,8 +51,8 @@ def main():
                         enviar_mensaje(info.id_chat, "Operación realizada")
 
                     elif texto == "/agregar_paquete" or texto == "/agregar_paquete@teamrafikibot":
-
-                        enviar_mensaje(info.id_chat, "Rotando...")
+                        enviar_mensaje(info.id_chat, "Escriba el alias del dueño del paquete:")
+                        servicio.set_variable("paso", "6")
 
 
                     else:
@@ -136,6 +136,40 @@ def main():
                     enviar_mensaje(info.id_chat, "Operacion realizada.")
                     servicio.set_variable("paso", "0")
 
+                elif paso == "6":
+                    lista_un = servicio.lista_de_personas()
+                    if texto in lista_un:
+                       servicio.set_variable("p1", texto)
+                       enviar_mensaje(info.id_chat, "Escribe el tipo de paquete")
+                       servicio.set_variable("paso", "7")
+                    else:
+                        enviar_mensaje(info.id_chat,
+                                       "Ese usuario no esta registrado intente de nuevo o /cancelar para salir")
+
+                elif paso == "7":
+
+                    if servicio.validar_paquete(texto):
+                       servicio.set_variable("p2", texto)
+                       enviar_mensaje(info.id_chat, "Escribe la fecha de compra \n Formato: \n dd/mm/aaaa")
+                       servicio.set_variable("paso", "8")
+                    else:
+                        enviar_mensaje(info.id_chat,
+                                       "Ese paquete no esta odertado por la empresa intente de nuevo o /cancelar para salir")
+
+                elif paso == "8":
+                    fecha = servicio.fecha(texto)
+                    if not fecha == "-1":
+                        servicio.set_variable("p3", fecha)
+                        enviar_mensaje(info.id_chat, "Va a registraar el paquete /cancelar")
+                        servicio.set_variable("paso", "8.5")
+                    else:
+                        enviar_mensaje(info.id_chat,
+                                       "Ese paquete no esta odertado por la empresa intente de nuevo o /cancelar para salir")
+
+                elif paso == "8.5":
+                    servicio.insertar_paquete(servicio.get_variable("p1"),servicio.get_variable("p2"),servicio.get_variable("p3"))
+                    enviar_mensaje(info.id_chat, "Operacion realizada")
+                    servicio.set_variable("paso", "0")
 
             else:
 

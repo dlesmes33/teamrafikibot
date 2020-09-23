@@ -2,6 +2,7 @@ from Persona import Persona
 import sys,psycopg2
 import Singleton
 import Conexion
+import  datetime
 
 @Singleton.SingletonDecorator
 class Servicios():
@@ -240,7 +241,53 @@ class Servicios():
         miCursor.close()
         print("*****************")
         print(personas)
-        return personas  
+        return personas
+    def validar_paquete(self,cadena ):
+        bien = False
+        paquetes = [15,30,60,100,300,500,1000,2000,5000,10000,50000,100000]
+        try:
+            num = int(cadena)
+            if num in paquetes:
+                bien = True
+        except ValueError:
+                bien = False
+
+        return bien
+
+
+    def fecha(self, cadena="02/12/2009"):
+        if not cadena.__len__() == 10:
+            raise TypeError
+
+        dias_mes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        try:
+            anno_actual = datetime.datetime.today().year
+            d = cadena[0:2]
+            m = cadena[3:5]
+            a = cadena[6:10]
+            dia = int(d)
+            mes = int(m)
+            anno = int(a)
+            # ver si el año es biciesto
+            if not cadena[2] == "/" or not cadena[5] == "/":
+                raise TypeError
+            if mes < 0 or mes > 12:
+                raise ValueError
+            if anno < 2019 or anno > anno_actual:
+                raise ValueError
+            if ((anno % 4 == 0 and anno % 100 != 0) or anno % 400 == 0):
+                dias_mes[1] += 1
+            if dia < 0 or dia > dias_mes[mes - 1]:
+                raise ValueError
+
+
+        except TypeError:
+            return "-1"
+        except ValueError:
+            return "-1"
+
+
+        return str(anno) + "-" + str(mes) + "-" + str(dia)
 
     def lista_serials_usuario(self):
         c = Conexion.Conexion()
@@ -281,7 +328,21 @@ class Servicios():
 
 
 
-'''
+
+
+
+    def insertar_paquete(self, username,  paquete, fecha  ):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        usuario = self.get_userId(username)
+
+        param_list = [usuario, paquete , fecha]
+        miCursor.execute("INSERT INTO paquete(fk_usuario,cantidad , fecha) VALUES (%s, %s, %s)", param_list)
+        c.miConexion.commit()
+        miCursor.close()
+	
+    '''
+ 
     def puntuacion(self,grupo):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
@@ -294,7 +355,7 @@ class Servicios():
             puntos.append(persona)
         miCursor.close()
         return puntos
-
+    
     def persona_en_grupo(self,grupo,persona):
         existe = False
         c = Conexion.Conexion()
