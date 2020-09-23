@@ -337,7 +337,7 @@ class Servicios():
         usuario = self.get_userId(username)
 
         param_list = [usuario, paquete , fecha]
-        miCursor.execute("INSERT INTO paquete(fk_usuario,cantidad , fecha) VALUES (%s, %s, %s)", param_list)
+        miCursor.execute("INSERT INTO paquete(fk_usuario,tipo,fecha) VALUES (%s, %s, %s)", param_list)
         c.miConexion.commit()
         miCursor.close()
 	
