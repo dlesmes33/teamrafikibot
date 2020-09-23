@@ -272,10 +272,11 @@ def mostrar_paquetes():
         else:
             posicion = buscar_paquete(del_ususario,tipo)
             if not  posicion == -1:
+                cantidad[posicion] += 1
+            else:
                 del_ususario += [tipo]
                 cantidad += [1]
-            else:
-                cantidad[posicion] += 1
+
 
     texto += actual + ":\n"
     for i in range(0, cantidad.__len__()):
@@ -286,11 +287,9 @@ def mostrar_paquetes():
 def buscar_paquete(lista, paquete):
     i =0
     existe = -1
-    while existe == -1:
+    while existe == -1 and i < len(lista):
         if paquete == lista[i]:
             existe = i
-        if i == len(lista)-1:
-            break
         i += 1
     return existe
 
