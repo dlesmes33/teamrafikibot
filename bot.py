@@ -238,14 +238,14 @@ def mostrar_prestamos():
     personas = servicio.lista_serials_usuario()
     actual = ""
     for desde,para,cantidad in prestamos:
-        desde = servicio.buscar_usuario_por_serial(personas, desde)
-        para = servicio.buscar_usuario_por_serial(personas, para)
-        if not desde == actual:
-           texto +=  para+" ha recibido un prestamo de :\n"
-           texto += desde +"($" +cantidad +")"+"\n"
-           actual = para
+        desde_temp = servicio.buscar_usuario_por_serial(personas, desde)
+        para_temp = servicio.buscar_usuario_por_serial(personas, para)
+        if not desde_temp == actual:
+           texto +=  para_temp+" ha recibido un prestamo de :\n"
+           texto += desde_temp +"($" +cantidad +")"+"\n"
+           actual = para_temp
         else:
-            texto += desde + "($" + cantidad + ")" + "\n"
+            texto += desde_temp + "($" + cantidad + ")" + "\n"
 
     return texto
 
