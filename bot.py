@@ -234,13 +234,12 @@ def rotacion():
 
 def mostrar_prestamos():
     texto =""
-    serial = "blablabla"
     prestamos =  servicio.lista_prestamos()
     personas = servicio.lista_serials_usuario()
     for desde,para,cantidad in prestamos:
         desde = servicio.buscar_usuario_por_serial(personas, desde)
         para = servicio.buscar_usuario_por_serial(personas,para)
-        texto = para+" ha recibido un prestamo de "+desde+" ($" +cantidad +")" +"\n"
+        texto += para+" ha recibido un prestamo de "+desde+" ($" +cantidad +")" +"\n"
     return texto
 
 
