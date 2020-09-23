@@ -263,11 +263,11 @@ def mostrar_paquetes():
         if not usuario == actual:
            texto += usuario + ":\n"
            for i in range(0,cantidad.__len__()):
-               texto += "Tipo: "+str(del_ususario[i])+" Cantidad: "+str(del_ususario[i])+"\n"
+               texto += "Tipo: "+str(del_ususario[i])+" Cantidad: "+str(cantidad[i])+"\n"
 
            cantidad = [1]
            del_ususario = [tipo]
-           texto +=  usuario+ ":\n"
+           
            actual = usuario
         else:
             posicion = buscar_paquete(del_ususario,tipo)
