@@ -213,6 +213,8 @@ def reportes(comando):
          texto = "Bots:"+"\n"+"@Trustinvestingschool_bot"+"\n"+"@TrustInvestingEnCuba_bot"
     elif comando == "/prestamos" or comando == "/prestamos@teamrafikibot":
         texto = mostrar_prestamos()
+    elif comando == "/paquetes_comprados" or comando == "/paquetes_comprados@teamrafikibot":
+        texto = "Implementando"
     else:
         texto =""
 

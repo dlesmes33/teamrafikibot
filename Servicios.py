@@ -322,7 +322,18 @@ class Servicios():
                 return nombre
         return "Kasper"
 
-
+    def lista_paquete(self):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        miCursor.execute("SELECT  fk_usuario,fecha,tipo FROM paquete WHERE activo = TRUE ORDER BY fk_usuario")
+        tabla = miCursor.fetchall()
+        paquetes = []
+        for row in tabla:
+            paquetes += [row]
+        miCursor.close()
+        print("*****************")
+        print(paquetes)
+        return paquetes
 
 
 
@@ -337,7 +348,7 @@ class Servicios():
         usuario = self.get_userId(username)
 
         param_list = [usuario, paquete , fecha]
-        miCursor.execute("INSERT INTO paquete(fk_usuario,cantidad , fecha) VALUES (%s, %s, %s)", param_list)
+        miCursor.execute("INSERT INTO paquete(fk_usuario,tipo,fecha) VALUES (%s, %s, %s)", param_list)
         c.miConexion.commit()
         miCursor.close()
 	
