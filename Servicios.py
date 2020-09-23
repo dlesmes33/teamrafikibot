@@ -256,11 +256,12 @@ class Servicios():
 
 
     def fecha(self, cadena="02/12/2009"):
-        if not cadena.__len__() == 10:
-            raise TypeError
-
-        dias_mes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         try:
+            if not cadena.__len__() == 10:
+                raise TypeError
+
+            dias_mes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
             anno_actual = datetime.datetime.today().year
             d = cadena[0:2]
             m = cadena[3:5]
