@@ -231,9 +231,7 @@ class Servicios():
 
     def lista_de_personas_orden_rotacion(self):
         c = Conexion.Conexion()
-
         miCursor = c.miConexion.cursor()
-
         miCursor.execute("SELECT  nombre_usuario,orden_rotacion FROM usuario WHERE orden_rotacion IS NOT NULL ORDER BY orden_rotacion")
         tabla = miCursor.fetchall()
         personas = []
@@ -244,9 +242,46 @@ class Servicios():
         print(personas)
         return personas  
 
+    def lista_serials_usuario(self):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        miCursor.execute("SELECT  id_usuario,nombre_usuario FROM usuario ")
+        tabla = miCursor.fetchall()
+        personas = []
+        for row in tabla:
+            personas += [row]
+        miCursor.close()
+        print("*****************")
+        print(personas)
+        return personas
 
-	
-    '''
+    def lista_prestamos(self):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        miCursor.execute("SELECT  desde,para,cantidad FROM prestamo ")
+        tabla = miCursor.fetchall()
+        prestamos = []
+        for row in tabla:
+            prestamos += [row]
+        miCursor.close()
+        print("*****************")
+        print(prestamos)
+        return prestamos
+
+    def buscar_usuario_por_serial(self,personas,serial):
+
+        for id,nombre  in personas:
+            if id == serial:
+                return nombre
+        return "Kasper"
+
+
+
+
+
+
+
+'''
     def puntuacion(self,grupo):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()

@@ -154,6 +154,10 @@ def main():
 
     return ''
 
+
+
+
+
 def reportes(comando):
 
     if comando == "/llamar" or comando == "/llamar@teamrafikibot":
@@ -173,6 +177,8 @@ def reportes(comando):
          texto = rotacion()
     elif comando == "/bots" or comando == "/bots@teamrafikibot":
          texto = "Bots:"+"\n"+"@Trustinvestingschool_bot"+"\n"+"@TrustInvestingEnCuba_bot"
+    elif comando == "/prestamos" or comando == "/prestamos@teamrafikibot":
+        texto = mostrar_prestamos()
     else:
         texto =""
 
@@ -192,7 +198,16 @@ def rotacion():
     texto += "El proximo miembro en beneficiarse es el: "+servicio.get_variable("persona_actual_rotacion")
     return texto
 
-
+def mostrar_prestamos():
+    texto =""
+    serial = "blablabla"
+    prestamos =  servicio.lista_prestamos()
+    personas = servicio.lista_serials_usuario()
+    for desde,para,cantidad in prestamos:
+        desde = servicio.buscar_usuario_por_serial(personas, desde)
+        para = servicio.buscar_usuario_por_serial(personas,para)
+        texto = para+" ha recibido un prestamo de "+desde+" ($" +cantidad +")" +"\n"
+    return texto
 
 
 
