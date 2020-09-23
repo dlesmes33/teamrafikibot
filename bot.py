@@ -249,6 +249,44 @@ def mostrar_prestamos():
 
     return texto
 
+def mostrar_paquetes():
+    texto =""
+    cantidad = []
+    del_ususario = []
+    paquetes =  servicio.lista_paquete()
+    personas = servicio.lista_serials_usuario()
+    actual = ""
+    for usuario,p,tipo in paquetes:
+        usuario = servicio.buscar_usuario_por_serial(personas, usuario)
+        if not usuario == actual:
+           texto += usuario + ":\n"
+           for i in range(0,cantidad.__len__()):
+               texto += "Tipo: "+str(del_ususario[i])+" Cantidad: "+str(del_ususario[i])
+
+           cantidad = [1]
+           del_ususario = [tipo]
+           texto +=  usuario+ ":\n"
+           actual = usuario
+        else:
+            posicion = buscar_paquete(del_ususario,tipo)
+            if not  posicion == -1:
+                del_ususario +=  [tipo]
+                cantidad += [1]
+            else:
+                cantidad[posicion] += 1
+
+    return texto
+
+def buscar_paquete(lista, paquete):
+    i =0
+    existe = -1
+    while existe == -1:
+        if paquete == lista[i]:
+            existe = i
+        if i == len(lista)-1:
+            break
+        i += 1
+    return existe
 
 
 '''
