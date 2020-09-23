@@ -237,7 +237,7 @@ def mostrar_prestamos():
     prestamos =  servicio.lista_prestamos()
     personas = servicio.lista_serials_usuario()
     actual = ""
-    for desdef,paraf,cantidad in prestamos:
+    for desde,para,cantidad in prestamos:
         desde = servicio.buscar_usuario_por_serial(personas, desde)
         para = servicio.buscar_usuario_por_serial(personas, para)
         if not para == actual:
