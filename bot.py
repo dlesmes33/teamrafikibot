@@ -261,14 +261,15 @@ def mostrar_paquetes():
     for usuario,p,tipo in paquetes:
         usuario = servicio.buscar_usuario_por_serial(personas, usuario)
         if not usuario == actual:
-           texto += actual + ":\n"
-           for i in range(0,cantidad.__len__()):
-               texto += "Tipo: "+str(del_ususario[i])+" Cantidad: "+str(cantidad[i])+"\n"
+            if not actual == "":
+               texto += actual + ":\n"
+               for i in range(0,cantidad.__len__()):
+                   texto += "Tipo: "+str(del_ususario[i])+" Cantidad: "+str(cantidad[i])+"\n"
 
-           cantidad = [1]
-           del_ususario = [tipo]
+            cantidad = [1]
+            del_ususario = [tipo]
 
-           actual = usuario
+            actual = usuario
         else:
             posicion = buscar_paquete(del_ususario,tipo)
             if not  posicion == -1:
