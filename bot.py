@@ -243,7 +243,7 @@ def mostrar_prestamos():
         if not desde == actual:
            texto +=  para+" ha recibido un prestamo de :\n"
            texto += desde +"($" +cantidad +")"+"\n"
-           actual = desde
+           actual = para
         else:
             texto += desde + "($" + cantidad + ")" + "\n"
 
