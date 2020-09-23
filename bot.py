@@ -272,10 +272,14 @@ def mostrar_paquetes():
         else:
             posicion = buscar_paquete(del_ususario,tipo)
             if not  posicion == -1:
-                del_ususario +=  [tipo]
+                del_ususario += [tipo]
                 cantidad += [1]
             else:
                 cantidad[posicion] += 1
+
+    texto += actual + ":\n"
+    for i in range(0, cantidad.__len__()):
+        texto += "Tipo: " + str(del_ususario[i]) + " Cantidad: " + str(cantidad[i]) + "\n"
 
     return texto
 
