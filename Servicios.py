@@ -322,7 +322,18 @@ class Servicios():
                 return nombre
         return "Kasper"
 
-
+    def lista_paquete(self):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        miCursor.execute("SELECT  fk_usuario,fecha,tipo FROM paquete WHERE activo = TRUE ORDER BY fk_usuario")
+        tabla = miCursor.fetchall()
+        paquetes = []
+        for row in tabla:
+            paquetes += [row]
+        miCursor.close()
+        print("*****************")
+        print(paquetes)
+        return paquetes
 
 
 
