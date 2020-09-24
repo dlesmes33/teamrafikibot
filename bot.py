@@ -259,7 +259,7 @@ def mostrar_paquetes():
     print(paquetes)
     personas = servicio.lista_serials_usuario()
     actual = ""
-    for usuario,p,tipo in paquetes:
+    for usuario,tipo in paquetes:
         usuario = servicio.buscar_usuario_por_serial(personas, usuario)
         if not usuario == actual:
             if not actual == "":

@@ -326,7 +326,7 @@ class Servicios():
     def lista_paquete(self):
         c = Conexion.Conexion()
         miCursor = c.miConexion.cursor()
-        miCursor.execute("SELECT fk_usuario,fecha,tipo FROM paquete WHERE activo = TRUE GROUP BY fk_usuario,fecha,tipo ORDER BY fk_usuario ASC, tipo ASC")
+        miCursor.execute("SELECT fk_usuario,tipo FROM paquete WHERE activo = TRUE GROUP BY fk_usuario,tipo ORDER BY fk_usuario ASC, tipo ASC")
         tabla = miCursor.fetchall()
         paquetes = []
         for row in tabla:
