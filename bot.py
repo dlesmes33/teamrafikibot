@@ -345,6 +345,21 @@ def enviar_mensaje(idChat, texto):
     message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
     return ''
+def enviar_mensaje(idChat):
+    json_data = {
+        "chat_id": idChat,
+        "botones" :{
+            "reply_markup":{
+                "inline_keyboard":[
+                    {"text": 'Botom1',"callback" : 'boton1'},
+                    {"text": 'Botom1',"callback" : 'boton1'}
+                ]
+            }
+        }
+    }
+    message_url = BOT_URL + 'sendMessage'
+    requests.post(message_url, json=json_data)
+    return ''
 
 def info_mensaje(mensaje):
     tipo_sms = "texto_editado"
