@@ -256,6 +256,7 @@ def mostrar_paquetes():
     cantidad = []
     del_ususario = []
     paquetes =  servicio.lista_paquete()
+    print(paquetes)
     personas = servicio.lista_serials_usuario()
     actual = ""
     for usuario,p,tipo in paquetes:
