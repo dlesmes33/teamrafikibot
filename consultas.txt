@@ -92,7 +92,7 @@ VALUES ('@ichitabel', '478936527',3);
 INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
 VALUES ('@momi99', '695732356',0);
 INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
-VALUES ('@alvaro_fernadez', 'anose',0);
+VALUES ('@SalamyForYou', '1039589236',0);
 INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
 VALUES ('@Daniel970212', '5354415962',0);
 INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
