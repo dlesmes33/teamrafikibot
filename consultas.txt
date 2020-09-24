@@ -81,9 +81,28 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.usuario
     OWNER to ougzklqezzcdtm;
+	
+	
 INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
-	VALUES ('@rafiki33', '877561784',1);
-	INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
-	VALUES ('@kunkkaharden', '837689725',2);
-	INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
-	VALUES ('@ichitabel', '478936527',3);
+VALUES ('@rafiki33', '877561784',1);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@kunkkaharden', '837689725',2);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@ichitabel', '478936527',3);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@momi99', '695732356',0);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@alvaro_fernadez', 'anose',0);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@Daniel970212', '5354415962',0);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@Vero0416', '817434766',0);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@isauralva', '959109877',);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@HReaper96', '766927398',);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@jackwelter', '891628440',);
+INSERT INTO public.usuario(nombre_usuario, id_telegram,orden_rotacion)
+VALUES ('@piriboynigga', '1117785632',);
+
