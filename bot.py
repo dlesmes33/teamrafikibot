@@ -214,7 +214,7 @@ def reportes(comando):
     elif comando == "/prestamos" or comando == "/prestamos@teamrafikibot":
         texto = mostrar_prestamos()
     elif comando == "/paquetes_comprados" or comando == "/paquetes_comprados@teamrafikibot":
-        texto = "Implementando"
+        texto = mostrar_paquetes()
     else:
         texto =""
 
@@ -261,32 +261,36 @@ def mostrar_paquetes():
     for usuario,p,tipo in paquetes:
         usuario = servicio.buscar_usuario_por_serial(personas, usuario)
         if not usuario == actual:
-           texto += usuario + ":\n"
-           for i in range(0,cantidad.__len__()):
-               texto += "Tipo: "+str(del_ususario[i])+" Cantidad: "+str(del_ususario[i])
+            if not actual == "":
+               texto += actual + ":\n"
+               for i in range(0,cantidad.__len__()):
+                   texto += "Tipo: "+str(del_ususario[i])+" Cantidad: "+str(cantidad[i])+"\n"
 
-           cantidad = [1]
-           del_ususario = [tipo]
-           texto +=  usuario+ ":\n"
-           actual = usuario
+            cantidad = [1]
+            del_ususario = [tipo]
+
+            actual = usuario
         else:
             posicion = buscar_paquete(del_ususario,tipo)
             if not  posicion == -1:
-                del_ususario +=  [tipo]
-                cantidad += [1]
-            else:
                 cantidad[posicion] += 1
+            else:
+                del_ususario += [tipo]
+                cantidad += [1]
+
+
+    texto += actual + ":\n"
+    for i in range(0, cantidad.__len__()):
+        texto += "Tipo: " + str(del_ususario[i]) + " Cantidad: " + str(cantidad[i]) + "\n"
 
     return texto
 
 def buscar_paquete(lista, paquete):
     i =0
     existe = -1
-    while existe == -1:
+    while existe == -1 and i < len(lista):
         if paquete == lista[i]:
             existe = i
-        if i == len(lista)-1:
-            break
         i += 1
     return existe
 
