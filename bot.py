@@ -356,6 +356,7 @@ def info_mensaje(mensaje):
     bot = None 
     id_chat = None
     date = None
+    username = None
     if "message" in mensaje:
         if "text" in mensaje["message"]:
             tipo_sms ="texto"
@@ -382,8 +383,9 @@ def info_mensaje(mensaje):
         bot = mensaje['message']['from']['is_bot']
         id_chat = mensaje['message']['chat']['id']
         date = mensaje['message']['date']
-    nombre_usuario ="@" + mensaje['message']['from']['username']
-    return Info_Mensaje(persona, id_persona , bot, chat, id_chat, tipo_chat, tipo_sms, date, update_id, nombre_usuario)
+        if "username" in mensaje:
+           username ="@" + mensaje['message']['from']['username']
+    return Info_Mensaje(persona, id_persona , bot, chat, id_chat, tipo_chat, tipo_sms, date, update_id, username)
 
 def obtener_alias():
     return ""
