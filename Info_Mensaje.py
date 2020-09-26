@@ -1,5 +1,5 @@
 class Info_Mensaje():
-    def __init__(self ,persona, id_persona, bot, chat, id_chat, tipo_chat, tipo_sms,date,update_id):
+    def __init__(self ,persona, id_persona, bot, chat, id_chat, tipo_chat, tipo_sms,date,update_id,username):
         self.persona = persona
         self.id_persona = id_persona
         self.is_bot = bot
@@ -9,6 +9,7 @@ class Info_Mensaje():
         self.tipo_sms = tipo_sms
         self.date = date
         self.update_id = update_id
+        self.username = username
 
 
 
