@@ -22,8 +22,8 @@ def main():
     lista = servicio.lista_de_id()
 
     print(sms)
-    #if not info.tipo_chat.lower() == "private":
-     #   enviar_mensaje(info.id_chat,servicio.cambio_alias(info.username,info.id_persona))
+    if not info.tipo_chat.lower() == "private":
+       enviar_mensaje(info.id_chat,servicio.cambio_alias(info.username,info.id_persona))
 
     if not info.is_bot and info.tipo_sms == "texto":
         enviar_mensaje(info.id_chat, "Operación cancelada")
@@ -383,7 +383,7 @@ def info_mensaje(mensaje):
         bot = mensaje['message']['from']['is_bot']
         id_chat = mensaje['message']['chat']['id']
         date = mensaje['message']['date']
-        username = mensaje['message']['chat']['username']
+        username = mensaje['message']['from']['username']
     return Info_Mensaje( persona, id_persona , bot, chat, id_chat, tipo_chat, tipo_sms, date,update_id,username)
 
 def obtener_alias():
