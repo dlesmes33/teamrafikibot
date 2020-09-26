@@ -364,6 +364,8 @@ class Servicios():
           nombre_usuario = row[0]
         if not alias_actual == nombre_usuario:
             texto ="#CambioDeNombreDeUsuario"+"\n"+"El usuario "+alias_actual+" ha cambiado su nombre de usuario:"+"\n"+"Su nombre de usuario anterior era "+nombre_usuario
+            print(alias_actual)
+            print(id_telegram)
             param_list = [alias_actual,id_telegram]
             miCursor.execute("UPDATE usuario SET nombre_usuario = %s WHERE id_telegram = %s",param_list)
             c.miConexion.commit()
