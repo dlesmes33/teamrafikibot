@@ -125,7 +125,7 @@ class Servicios():
 
         miCursor = c.miConexion.cursor()
 
-        miCursor.execute("SELECT  nombre_usuario FROM usuario ")
+        miCursor.execute("SELECT  nombre_usuario FROM usuario ORDER BY id_usuario")
         tabla = miCursor.fetchall()
         personas = []
         for row in tabla:

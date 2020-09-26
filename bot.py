@@ -26,7 +26,6 @@ def main():
        enviar_mensaje(info.id_chat,servicio.cambio_alias(info.username,str(info.id_persona)))
 
     if not info.is_bot and info.tipo_sms == "texto":
-        enviar_mensaje(info.id_chat, "Operación cancelada")
         if str(info.id_persona) in lista:
 
 
@@ -383,7 +382,7 @@ def info_mensaje(mensaje):
         bot = mensaje['message']['from']['is_bot']
         id_chat = mensaje['message']['chat']['id']
         date = mensaje['message']['date']
-        username = mensaje['message']['from']['username']
+        username = "@"+mensaje['message']['from']['username']
     return Info_Mensaje( persona, id_persona , bot, chat, id_chat, tipo_chat, tipo_sms, date,update_id,username)
 
 def obtener_alias():
