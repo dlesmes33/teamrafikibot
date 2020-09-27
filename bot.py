@@ -24,7 +24,7 @@ def main():
     print(sms)
     print(info.tipo_chat)
     #if not info.tipo_chat.lower() == "private": # aqui da el berro
-       enviar_mensaje(info.id_chat,servicio.cambio_alias(info.username,str(info.id_persona)))
+       #enviar_mensaje(info.id_chat,servicio.cambio_alias(info.username,str(info.id_persona)))
 
     if not info.is_bot and info.tipo_sms == "texto":
         if str(info.id_persona) in lista:
