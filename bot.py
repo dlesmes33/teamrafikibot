@@ -28,7 +28,7 @@ def main():
         if str(info.id_persona) in lista:
             alias = servicio.cambio_alias(info.username, str(info.id_persona))
             if alias == "None":
-                enviar_mencionar(info.id_chat, "Elija un nombre de usuario: ", info.persona, info.id_persona)
+                enviar_mencionar(info.id_chat, "Por favor, edite su perfil y elija un nombre de usuario: ", info.persona, info.id_persona)
 
 
 
@@ -180,12 +180,12 @@ def main():
                 if not  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
         else:
-            text = str(leer_mensaje(sms)).lower() 
+            text = str(leer_mensaje(sms)).lower()
             enviar_mensaje(info.id_persona,"Usted no está registrado")
             if not info.username == None:
                    enviar_mensaje(877561784,info.username +"\n"+text)
             else:
-                enviar_mencionar(877561784,text,info.persona,info.id_persona)
+                   enviar_mencionar(877561784,text,info.persona,info.id_chat)
     return ''
 
 
