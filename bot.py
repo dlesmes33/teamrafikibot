@@ -23,8 +23,6 @@ def main():
 
     print(sms)
     print(info.tipo_chat)
-    enviar_mencionar(info.id_chat,"Me escribio: ",info.persona,info.id_persona)
-
 
     if not info.is_bot and info.tipo_sms == "texto":
         if str(info.id_persona) in lista:
@@ -180,8 +178,11 @@ def main():
                     enviar_mensaje(info.id_chat, reporte)
         else:
             text = str(leer_mensaje(sms)).lower()
-            enviar_mensaje(info.id_persona,"Usted no está ")
-            enviar_mensaje(877561784,info.username + text)
+            enviar_mensaje(info.id_persona,"Usted no está registrado")
+            if not info.username == None:
+                   enviar_mensaje(877561784,info.username + text)
+            else:
+                enviar_mencionar(877561784,text+"\n",info.persona,info.id_persona)
 
 
 
