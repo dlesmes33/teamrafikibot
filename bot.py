@@ -178,7 +178,10 @@ def main():
                 reporte = reportes(texto)
                 if not  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
-
+        else:
+            text = str(leer_mensaje(sms)).lower()
+            enviar_mensaje(info.id_persona,"Usted no está ")
+            enviar_mensaje(877561784,info.username + text)
 
 
 
