@@ -374,7 +374,7 @@ class Servicios():
             miCursor.close()
             return texto
         except:
-            return "Elpalo"
+            return "El palón divino"
 
 	
     '''
