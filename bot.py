@@ -23,7 +23,7 @@ def main():
 
     print(sms)
     print(info.tipo_chat)
-
+    enviar_mencionar(info.id_chat,"Me escribio: ","Pepe",info.id_persona)
 
 
     if not info.is_bot and info.tipo_sms == "texto":
@@ -347,9 +347,24 @@ def enviar_mensaje(idChat, texto):
         "chat_id": idChat,
         "text": texto,
     }
+
+
     message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
     return ''
+
+
+def enviar_mencionar(idChat, texto,nick,id):
+    json_data = {
+        "chat_id": idChat,
+        "text": texto + nick,
+        'entities': [{'offset': len(texto), 'length': len(nick), 'type': 'text_mention', 'user': {'id': id, 'is_bot': False, 'first_name': nick}}]
+    }
+
+    message_url = BOT_URL + 'sendMessage'
+    requests.post(message_url, json=json_data)
+    return ''
+
 
 def info_mensaje(mensaje):
     tipo_sms = "texto_editado"
