@@ -278,32 +278,33 @@ def mostrar_paquetes():
     print(paquetes)
     personas = servicio.lista_serials_usuario()
     actual = ""
-    for usuario,tipo in paquetes:
-        usuario = servicio.buscar_usuario_por_serial(personas, usuario)
-        if not usuario == actual:
-            if not actual == "":
-               texto += actual + ":\n"
-               for i in range(0,cantidad.__len__()):
-                   texto += "Tipo: "+str(del_ususario[i])+" Cantidad: "+str(cantidad[i])+"\n"
+    if not paquetes.__len__() == 0:
+        for usuario, tipo in paquetes:
+            usuario = servicio.buscar_usuario_por_serial(personas, usuario)
+            if not usuario == actual:
+                if not actual == "":
+                    texto += actual + ":\n"
+                    for i in range(0, cantidad.__len__()):
+                        texto += "Tipo: " + str(del_ususario[i]) + " Cantidad: " + str(cantidad[i]) + "\n"
 
-            cantidad = [1]
-            del_ususario = [tipo]
+                cantidad = [1]
+                del_ususario = [tipo]
 
-            actual = usuario
-        else:
-            posicion = buscar_paquete(del_ususario,tipo)
-            if not  posicion == -1:
-                cantidad[posicion] += 1
+                actual = usuario
             else:
-                del_ususario += [tipo]
-                cantidad += [1]
+                posicion = buscar_paquete(del_ususario, tipo)
+                if not posicion == -1:
+                    cantidad[posicion] += 1
+                else:
+                    del_ususario += [tipo]
+                    cantidad += [1]
 
-    if not actual == "":
         texto += actual + ":\n"
-    for i in range(0, cantidad.__len__()):
-        texto += "Tipo: " + str(del_ususario[i]) + " Cantidad: " + str(cantidad[i]) + "\n"
-    if not texto == "":
-        texto = "No hay ningún paquete registrado"
+        for i in range(0, cantidad.__len__()):
+            texto += "Tipo: " + str(del_ususario[i]) + " Cantidad: " + str(cantidad[i]) + "\n"
+    else:
+        texto = "No hay ningún paquete comprado en este momento"
+
     return texto
 
 def buscar_paquete(lista, paquete):
