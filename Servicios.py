@@ -374,7 +374,7 @@ class Servicios():
             miCursor.close()
             return texto
         except:
-            return "Por favor, edite su perfil y póngase un nombre de usuario"
+            return "None"
 
 	
     '''
