@@ -29,7 +29,8 @@ def main():
             alias = servicio.cambio_alias(info.username, str(info.id_persona))
             if alias == "None":
                 enviar_mencionar(info.id_chat, "Elija un nombre de usuario: ", info.persona, info.id_persona)
-
+            else:
+                enviar_mensaje(info.id_persona,alias)
 
 
             texto = str(leer_mensaje(sms)).lower()
