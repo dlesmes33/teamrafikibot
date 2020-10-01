@@ -69,7 +69,7 @@ def main():
                 elif paso == "1":
                     lista_un = servicio.lista_de_personas()
 
-                    if not texto in lista_un and  servicio.validar_nombreUsuario(texto):
+                    if not texto in lista_un and servicio.validar_nombreUsuario(texto):
                         servicio.set_variable("p1",texto)
                         servicio.set_variable("paso","2")
                         enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
@@ -81,7 +81,7 @@ def main():
                     if not texto in lista:
 
                         servicio.set_variable("p2",texto)
-                        enviar_mensaje(info.id_chat, "Va ha hacer el registro de:\nusuario: "+servicio.get_variable("p1")+"\nid_telegram:"+
+                        enviar_mensaje(info.id_chat, "Va ha hacer el registro de:\nusuario: "+servicio.get_variable("p1")+"\nid_telegram: "+
                                        servicio.get_variable("p2")+"\nEscriba cualquir cosa para continuar o /cancelar para cancelar")
                         servicio.set_variable("paso", "2.5")
 
