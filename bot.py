@@ -182,7 +182,7 @@ def main():
                     enviar_mensaje(info.id_chat, reporte)
         else:
             text = str(leer_mensaje(sms)).lower()
-            enviar_mensaje(info.id_chat,"Usted no está registrado")
+            enviar_mensaje(info.id_chat,"Usted no está registrado"+"\n"+"Para más información entre a este grupo"+"\n"+"\n"+"Team rafiki No Registrados"+"\n"+"https://t.me/joinchat/AAAAAFFkD3as9fTMvGuQWw")
             if not info.username == None:
                    enviar_mensaje(877561784,info.username +"\n"+text)
             else:
