@@ -23,7 +23,7 @@ def main():
 
     print(sms)
     print(info.tipo_chat)
-    enviar_mencionar(info.id_chat,"Me escribio: ","Pepe",info.id_persona)
+    enviar_mencionar(info.id_chat,"Me escribio: ",info.persona,info.id_persona)
 
 
     if not info.is_bot and info.tipo_sms == "texto":
