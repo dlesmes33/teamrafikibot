@@ -249,7 +249,7 @@ def ListaOrganizada():
         for nombre in servicio.lista_de_personas():
             texto += nombre + "\n"
     else:
-        texto = "No hay ningún paquete comprado en este momento"
+        texto = "No hay ningún usuario registrado en este momento"
     return texto
 
 def rotacion():
