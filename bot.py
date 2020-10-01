@@ -298,11 +298,12 @@ def mostrar_paquetes():
                 del_ususario += [tipo]
                 cantidad += [1]
 
-
-    texto += actual + ":\n"
+    if not actual == "":
+        texto += actual + ":\n"
     for i in range(0, cantidad.__len__()):
         texto += "Tipo: " + str(del_ususario[i]) + " Cantidad: " + str(cantidad[i]) + "\n"
-
+    if not texto == "":
+        texto = "No hay ningún paquete registrado"
     return texto
 
 def buscar_paquete(lista, paquete):
