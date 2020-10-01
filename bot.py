@@ -240,8 +240,11 @@ def reportes(comando):
 
 def ListaOrganizada():
     texto = ""
-    for nombre in servicio.lista_de_personas():
-        texto += nombre +"\n"
+    if not servicio.lista_de_personas().__len__() == 0:
+        for nombre in servicio.lista_de_personas():
+            texto += nombre + "\n"
+    else:
+        texto = "No hay ningún paquete comprado en este momento"
     return texto
 
 def rotacion():
