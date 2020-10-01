@@ -266,7 +266,8 @@ def mostrar_prestamos():
            actual = para
         else:
             texto += desde + "($" + cantidad + ")" + "\n"
-
+    if texto == "":
+        texto = "No hay préstamos vigentes en este momento"
     return texto
 
 def mostrar_paquetes():
