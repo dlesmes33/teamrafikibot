@@ -24,11 +24,6 @@ def main():
     print(sms)
     print(info.tipo_chat)
 
-    pepe = str(leer_mensaje(sms)).lower()
-    if pepe == "/llamar" or pepe == "/llamar@teamrafikibot":
-        texto = ListaOrganizada()
-        enviar_mensaje(info.id_chat, texto)
-
     if not info.is_bot and info.tipo_sms == "texto":
         if str(info.id_persona) in lista:
             alias = servicio.cambio_alias(info.username, str(info.id_persona))
@@ -265,16 +260,17 @@ def mostrar_prestamos():
     prestamos =  servicio.lista_prestamos()
     personas = servicio.lista_serials_usuario()
     actual = ""
-    for desde,para,cantidad in prestamos:
-        desde = servicio.buscar_usuario_por_serial(personas, desde)
-        para = servicio.buscar_usuario_por_serial(personas, para)
-        if not para == actual:
-           texto +=  para+" ha recibido un prestamo de :\n"
-           texto += desde +"($" +cantidad +")"+"\n"
-           actual = para
-        else:
-            texto += desde + "($" + cantidad + ")" + "\n"
-    if texto == "":
+    if not prestamos.__len__() == 0:
+        for desde, para, cantidad in prestamos:
+            desde = servicio.buscar_usuario_por_serial(personas, desde)
+            para = servicio.buscar_usuario_por_serial(personas, para)
+            if not para == actual:
+                texto += para + " ha recibido un prestamo de :\n"
+                texto += desde + "($" + cantidad + ")" + "\n"
+                actual = para
+            else:
+                texto += desde + "($" + cantidad + ")" + "\n"
+    else:
         texto = "No hay préstamos vigentes en este momento"
     return texto
 
