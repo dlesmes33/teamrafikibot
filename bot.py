@@ -70,7 +70,7 @@ def main():
                     lista_un = servicio.lista_de_personas()
 
                     if not texto in lista_un:
-                        if servicio.validar_nombreUsuario(texto):
+                        if not servicio.validar_nombreUsuario(texto):
                             enviar_mensaje(info.id_chat,"Por favor introduzca correctamente el nombre de usuario de la persona que quiere agregar")
                         servicio.set_variable("p1",texto)
                         servicio.set_variable("paso","2")
