@@ -41,7 +41,7 @@ def main():
                     servicio.set_variable("paso", "0")
                     enviar_mensaje(info.id_chat, "Operación cancelada")
                 elif paso == "0":
-                    if texto == "/agregar" or texto == "/agregar@teamrafikibot":
+                    if texto == "/agregar_usuario" or texto == "/agregar_usuario@teamrafikibot":
                         servicio.set_variable("paso","1")
                         enviar_mensaje(info.id_chat, "Escriba el nombre de usuario")
 
