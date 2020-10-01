@@ -181,21 +181,12 @@ def main():
                 if not  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
         else:
-            text = str(leer_mensaje(sms)).lower()
+            text = str(leer_mensaje(sms)).lower() 
             enviar_mensaje(info.id_persona,"Usted no está registrado")
             if not info.username == None:
-                   enviar_mensaje(877561784,info.username + text)
+                   enviar_mensaje(877561784,info.username +"\n"+text)
             else:
-                enviar_mencionar(877561784,text+"\n",info.persona,info.id_persona)
-
-
-
-
-
-
-
-
-
+                enviar_mencionar(877561784,text,info.persona,info.id_persona)
     return ''
 
 
