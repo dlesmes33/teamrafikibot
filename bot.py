@@ -265,7 +265,7 @@ def mostrar_prestamos():
             desde = servicio.buscar_usuario_por_serial(personas, desde)
             para = servicio.buscar_usuario_por_serial(personas, para)
             if not para == actual:
-                texto += para + " ha recibido un prestamo de :\n"
+                texto += "\n"+para + " ha recibido un prestamo de :\n"
                 texto += desde + "($" + cantidad + ")" + "\n"
                 actual = para
             else:
