@@ -344,9 +344,24 @@ def enviar_mensaje(idChat, texto):
         "chat_id": idChat,
         "text": texto,
     }
+
+
     message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
     return ''
+
+
+def enviar_mencionar(idChat, texto):
+    json_data = {
+        "chat_id": idChat,
+        "text": texto,
+        'entities': [{'offset': len(texto), 'length': 5, 'type': 'text_mention', 'user': {'id': 926139871, 'is_bot': False, 'first_name': 'Azuan'}}]
+    }
+
+    message_url = BOT_URL + 'sendMessage'
+    requests.post(message_url, json=json_data)
+    return ''
+
 
 def info_mensaje(mensaje):
     tipo_sms = "texto_editado"
