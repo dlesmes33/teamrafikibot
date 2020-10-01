@@ -25,7 +25,7 @@ def main():
     print(info.tipo_chat)
 
     if not info.is_bot and info.tipo_sms == "texto":
-        #if str(info.id_persona) in lista:
+        if str(info.id_persona) in lista:
             alias = servicio.cambio_alias(info.username, str(info.id_persona))
             if alias == "None":
                 enviar_mencionar(info.id_chat, "Por favor, edite su perfil y elija un nombre de usuario: ", info.persona, info.id_persona)
