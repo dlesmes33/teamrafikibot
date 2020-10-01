@@ -69,7 +69,9 @@ def main():
                 elif paso == "1":
                     lista_un = servicio.lista_de_personas()
 
-                    if not texto in lista_un and servicio.validar_nombreUsuario(texto):
+                    if not texto in lista_un:
+                        if servicio.validar_nombreUsuario(texto):
+                            enviar_mensaje(info.id_chat,"Por favor introduzca correctamente el nombre de usuario de la persona que quiere agregar")
                         servicio.set_variable("p1",texto)
                         servicio.set_variable("paso","2")
                         enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
