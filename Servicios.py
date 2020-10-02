@@ -336,6 +336,32 @@ class Servicios():
         print(paquetes)
         return paquetes
 
+    def lista_paquetes_fechas(self):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        miCursor.execute("SELECT nombre_usuario,fecha,tipo FROM paquete JOIN usuario ON id_usuario = fk_usuario WHERE activo = TRUE  ORDER BY fecha")
+        tabla = miCursor.fetchall()
+        paquetes = []
+        for row in tabla:
+            paquetes += [row]
+        miCursor.close()
+        print("*****************")
+        print(paquetes)
+        return paquetes
+
+    def lista_paquetes_vencidos(self):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        miCursor.execute(
+            "SELECT nombre_usuario,fecha,tipo FROM paquete JOIN usuario ON id_usuario = fk_usuario WHERE activo = FALSE  ORDER BY fecha")
+        tabla = miCursor.fetchall()
+        paquetes = []
+        for row in tabla:
+            paquetes += [row]
+        miCursor.close()
+        print("*****************")
+        print(paquetes)
+        return paquetes
 
 
 

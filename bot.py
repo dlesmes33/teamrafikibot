@@ -233,6 +233,10 @@ def reportes(comando):
         texto = mostrar_prestamos()
     elif comando == "/paquetes_comprados" or comando == "/paquetes_comprados@teamrafikibot":
         texto = mostrar_paquetes()
+    elif comando == "/paquetes_por_fecha" or comando == "/paquetes_por_fecha@teamrafikibot":
+        texto = mostrar_paquetes_por_fecha()
+    elif comando == "/paquetes_vencidos" or comando == "/paquetes_vencidos@teamrafikibot":
+        texto = mostrar_paquetes_vencidos()
     else:
         texto =""
 
@@ -265,7 +269,7 @@ def mostrar_prestamos():
             desde = servicio.buscar_usuario_por_serial(personas, desde)
             para = servicio.buscar_usuario_por_serial(personas, para)
             if not para == actual:
-                texto += "\n"+para + " ha recibido un prestamo de :\n"
+                texto += "\n"+para + " ha recibido un préstamo de :\n"
                 texto += desde + "($" + cantidad + ")" + "\n"
                 actual = para
             else:
@@ -319,6 +323,28 @@ def buscar_paquete(lista, paquete):
             existe = i
         i += 1
     return existe
+
+def mostrar_paquetes_por_fecha():
+    texto = ""
+    paquetes = servicio.lista_paquetes_fechas()
+    if not paquetes.__len__() == 0:
+        for nombre,fecha,tipo in paquetes:
+            texto += texto + "Usuario: "+nombre+" Fecha de compra: "+fecha+" Tipo: "+tipo+"\n"
+    else:
+        texto = "No hay ningún paquete comprado en este momento"
+    return texto
+
+def mostrar_paquetes_vencidos():
+    texto = ""
+    paquetes = servicio.lista_paquetes_vencidos()
+    if not paquetes.__len__() == 0:
+        for nombre, fecha, tipo in paquetes:
+            texto += texto + "Usuario: " + nombre + " Fecha de compra: " + fecha + " Tipo: "+tipo + "\n"
+    else:
+        texto = "No hay ningún paquete vencido en este momento"
+    return texto
+
+
 
 
 '''
