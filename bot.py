@@ -234,11 +234,9 @@ def reportes(comando):
     elif comando == "/paquetes_comprados" or comando == "/paquetes_comprados@teamrafikibot":
         texto = mostrar_paquetes()
     elif comando == "/paquetes_por_fecha" or comando == "/paquetes_por_fecha@teamrafikibot":
-        #texto = mostrar_paquetes_por_fecha()
-        texto = "Paquetes por fecha"
+        texto = mostrar_paquetes_por_fecha()
     elif comando == "/paquetes_vencidos" or comando == "/paquetes_vencidos@teamrafikibot":
         texto = mostrar_paquetes_vencidos()
-        #texto = "Paquetes vencidos"
     else:
         texto =""
 
