@@ -345,8 +345,6 @@ class Servicios():
         for row in tabla:
             paquetes += [row]
         miCursor.close()
-        print("*****************")
-        print(paquetes)
         return paquetes
 
     def lista_paquetes_vencidos(self):
@@ -359,8 +357,6 @@ class Servicios():
         for row in tabla:
             paquetes += [row]
         miCursor.close()
-        print("*****************")
-        print(paquetes)
         return paquetes
 
 
