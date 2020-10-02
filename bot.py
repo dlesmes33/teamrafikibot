@@ -329,7 +329,7 @@ def mostrar_paquetes_por_fecha():
     paquetes = servicio.lista_paquetes_fechas()
     if not paquetes.__len__() == 0:
         for nombre,fecha,tipo in paquetes:
-            texto += "Usuario: "+nombre+" Fecha de compra: "+str(fecha)+" Tipo: "+str(tipo)+"\n"
+            texto += nombre + "  " + str(fecha) + "  " + str(tipo) + "\n"
     else:
         texto = "No hay ningún paquete comprado en este momento"
     return texto
@@ -339,7 +339,7 @@ def mostrar_paquetes_vencidos():
     paquetes = servicio.lista_paquetes_vencidos()
     if not paquetes.__len__() == 0:
         for nombre, fecha, tipo in paquetes:
-            texto += "Usuario: " + nombre + " Fecha de compra: "+str(fecha)+" Tipo: "+str(tipo)+"\n"
+            texto += nombre + "  "+str(fecha)+"  "+str(tipo)+"\n"
     else:
         texto = "No hay ningún paquete vencido en este momento"
     return texto
