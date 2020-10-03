@@ -58,6 +58,8 @@ def main():
                         enviar_mensaje(info.id_chat, "Escriba el alias del dueño del paquete:")
                         servicio.set_variable("paso", "6")
 
+                    elif texto == "/wallets" or texto == "/wallets@teamrafikibot":
+                        enviar_mensaje(info.id_chat,mostrar_wallets())
 
                     else:
                        reporte =  reportes(texto)
@@ -239,8 +241,6 @@ def reportes(comando):
         texto = mostrar_paquetes_por_fecha()
     elif comando == "/paquetes_vencidos" or comando == "/paquetes_vencidos@teamrafikibot":
         texto = mostrar_paquetes_vencidos()
-    elif comando == "/wallets" or comando == "/wallets@teamrafikibot":
-        texto = mostrar_wallets()
     else:
         texto =""
 
