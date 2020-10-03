@@ -353,7 +353,7 @@ def mostrar_wallets():
     wallets = servicio.lista_wallets()
     if not wallets.__len__() == 0:
         for nombre,wallet in wallets:
-            texto += nombre + "\n" +wallet
+            texto += nombre + "\n" + wallet +"\n"+"\n"
     else:
         texto = "No hay ninguna wallet registrada en este momento"
     return texto
