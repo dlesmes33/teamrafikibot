@@ -153,6 +153,7 @@ def main():
                         enviar_mensaje(info.id_chat,"El numero debe ser positivo y '.'para marcar los decimales intente de nuevo o /cancelar para salir")
 
                 elif paso == "5.6":
+                    enviar_mensaje(info.id_chat, "Prestando...")
                     servicio.prestar(servicio.get_variable("p1"), servicio.get_variable("p2"), float(servicio.get_variable("p3")))
                     enviar_mensaje(info.id_chat, "Operacion realizada.")
                     servicio.set_variable("paso", "0")
@@ -185,9 +186,10 @@ def main():
                         servicio.set_variable("paso", "8.5")
                     else:
                         enviar_mensaje(info.id_chat,
-                                       "Ese paquete no esta odertado por la empresa intente de nuevo o /cancelar para salir")
+                                       "Ese paquete no esta ofertado por la empresa intente de nuevo o /cancelar para salir")
 
                 elif paso == "8.5":
+                    enviar_mensaje(info.id_chat, "Insertando...")
                     servicio.insertar_paquete(servicio.get_variable("p1"),servicio.get_variable("p2"),servicio.get_variable("p3"))
                     enviar_mensaje(info.id_chat, "Operacion realizada")
                     servicio.set_variable("paso", "0")
@@ -237,6 +239,8 @@ def reportes(comando):
         texto = mostrar_paquetes_por_fecha()
     elif comando == "/paquetes_vencidos" or comando == "/paquetes_vencidos@teamrafikibot":
         texto = mostrar_paquetes_vencidos()
+    elif comando == "/wallets" or comando == "/wallets@teamrafikibot":
+        texto = mostrar_wallets()
     else:
         texto =""
 
@@ -342,6 +346,16 @@ def mostrar_paquetes_vencidos():
             texto += nombre + "  "+str(fecha)+"  "+str(tipo)+"\n"
     else:
         texto = "No hay ningún paquete vencido en este momento"
+    return texto
+
+def mostrar_wallets():
+    texto = ""
+    wallets = servicio.lista_wallets()
+    if not wallets.__len__() == 0:
+        for nombre,wallet in wallets:
+            texto += nombre + "\n" +wallet
+    else:
+        texto = "No hay ninguna wallet registrada en este momento"
     return texto
 
 

@@ -359,6 +359,17 @@ class Servicios():
         miCursor.close()
         return paquetes
 
+    def lista_wallets(self):
+        c = Conexion.Conexion()
+        miCursor = c.miConexion.cursor()
+        miCursor.execute("SELECT nombre_usuario,wallet FROM usuario WHERE wallet IS NOT NULL  ORDER BY id_usuario")
+        tabla = miCursor.fetchall()
+        wallets = []
+        for row in tabla:
+            wallets += [row]
+        miCursor.close()
+        return wallets
+
 
 
 
