@@ -249,10 +249,33 @@ def reportes(comando):
     return texto
 
 def advertencia(texto):
-    advertencia = ""
-    if texto == "/wallet":
-        advertencia = "Usted no tiene acceso a usar el comando /wallet"
-    return advertencia
+    warn = ""
+    if texto == "/cancelar":
+        warn = "Usted no tiene acceso a usar el comando /cancelar"
+    elif texto == "/cancelar@teamrafikibot":
+        warn = "Usted no tiene acceso a usar el comando /cancelar@teamrafikibot"
+    elif texto == "/agregar_usuario":
+        warn = "Usted no tiene acceso a usar el comando /agregar_usuario"
+    elif texto == "/agregar_usuario@teamrafikibot":
+        warn = "Usted no tiene acceso a usar el comando /agregar_usuario@teamrafikibot"
+    elif texto == "/prestar":
+        warn = "Usted no tiene acceso a usar el comando /prestar"
+    elif texto == "/prestar@teamrafikibot":
+        warn = "Usted no tiene acceso a usar el comando /prestar@teamrafikibot"
+    elif texto == "/rotar":
+        warn = "Usted no tiene acceso a usar el comando /rotar"
+    elif texto == "/rotar@teamrafikibot":
+        warn = "Usted no tiene acceso a usar el comando /rotar@teamrafikibot"
+    elif texto == "/agregar_paquete":
+        warn = "Usted no tiene acceso a usar el comando /agregar_paquete"
+    elif texto == "/agregar_paquete@teamrafikibot":
+        warn = "Usted no tiene acceso a usar el comando /agregar_paquete@teamrafikibot"
+    elif texto == "/wallets":
+        warn = "Usted no tiene acceso a usar el comando /wallets"
+    elif texto == "/wallets@teamrafikibot":
+        warn = "Usted no tiene acceso a usar el comando /wallets@teamrafikibot"
+
+    return warn
 
 def ListaOrganizada():
     texto = ""
