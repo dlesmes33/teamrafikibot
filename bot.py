@@ -197,7 +197,9 @@ def main():
                     servicio.set_variable("paso", "0")
 
             else:
-
+                warn  = advertencia(texto)
+                if not advertencia == "":
+                    enviar_mensaje(info.id_chat, warn)
                 reporte = reportes(texto)
                 if not  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
@@ -245,6 +247,12 @@ def reportes(comando):
         texto =""
 
     return texto
+
+def advertencia(texto):
+    advertencia = ""
+    if texto == "/wallet":
+        advertencia = "Usted no tiene acceso a usar el comando /wallet"
+    return advertencia
 
 def ListaOrganizada():
     texto = ""
