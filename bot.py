@@ -249,7 +249,9 @@ def reportes(comando):
     return texto
 
 def advertencia(texto):
+    # La verdad esta funcion se puede optimizar
     warn = ""
+    '''
     if texto == "/cancelar":
         warn = "Usted no tiene acceso a usar el comando /cancelar"
     elif texto == "/cancelar@teamrafikibot":
@@ -274,6 +276,17 @@ def advertencia(texto):
         warn = "Usted no tiene acceso a usar el comando /wallets"
     elif texto == "/wallets@teamrafikibot":
         warn = "Usted no tiene acceso a usar el comando /wallets@teamrafikibot"
+    '''
+    comandos = ["/cancelar","/cancelar@teamrafikibot",
+                "/agregar_usuario","/agregar_usuario@teamrafikibot",
+                "/prestar","/prestar@teamrafikibot",
+                "/rotar","/rotar@teamrafikibot",
+                "/agregar_paquete","/agregar_paquete@teamrafikibot",
+                "/wallets","/wallets@teamrafikibot"]
+    
+    for comando in comandos:
+        if comando == texto:
+            warn = comando
 
     return warn
 
