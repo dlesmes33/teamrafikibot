@@ -178,7 +178,7 @@ def main():
                        servicio.set_variable("paso", "8")
                     else:
                         enviar_mensaje(info.id_chat,
-                                       "Ese paquete no esta ofertado por la empresa intente de nuevo o /cancelar para salir")
+                                       "Por favor ingrese la fecha de compra con el formato correcto o /cancelar para salir")
 
                 elif paso == "8":
                     fecha = servicio.fecha(texto)
