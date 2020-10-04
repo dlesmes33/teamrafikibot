@@ -101,7 +101,7 @@ def main():
 
                         servicio.set_variable("p2",texto)
                         enviar_mensaje(info.id_chat, "Va ha hacer el registro de:\nusuario: "+servicio.get_variable("p1")+"\nid_telegram: "+
-                                       servicio.get_variable("p2")+"\nEscriba cualquir cosa para continuar o /cancelar para cancelar")
+                                       servicio.get_variable("p2")+"\nEscriba ok para continuar o /cancelar para cancelar")
                         servicio.set_variable("paso", "2.5")
 
                     else:
@@ -178,7 +178,7 @@ def main():
                        servicio.set_variable("paso", "8")
                     else:
                         enviar_mensaje(info.id_chat,
-                                       "Por favor ingrese la fecha de compra con el formato correcto o /cancelar para salir")
+                                       "Ese paquete no esta ofertado por la empresa intente de nuevo o /cancelar para salir")
 
                 elif paso == "8":
                     fecha = servicio.fecha(texto)
@@ -187,8 +187,7 @@ def main():
                         enviar_mensaje(info.id_chat, "Va a registraar el paquete /cancelar")
                         servicio.set_variable("paso", "8.5")
                     else:
-                        enviar_mensaje(info.id_chat,
-                                       "Ese paquete no esta ofertado por la empresa intente de nuevo o /cancelar para salir")
+                        enviar_mensaje(info.id_chat,"Por favor ingrese la fecha de compra con el formato correcto o /cancelar para salir")
 
                 elif paso == "8.5":
                     enviar_mensaje(info.id_chat, "Insertando...")
