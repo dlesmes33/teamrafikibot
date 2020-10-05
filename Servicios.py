@@ -413,7 +413,7 @@ class Servicios():
         comando = texto[0:7]
         print("comando: "+comando)
         if comando == "/wallet":
-            alias = texto[9:]
+            alias = texto[8:]
             print("alias: "+alias)
             lista_un = self.lista_de_personas()
             if alias in lista_un:
