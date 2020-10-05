@@ -65,6 +65,8 @@ def main():
                        reporte =  reportes(texto)
                        if not reporte == "":
                            enviar_mensaje(info.id_chat,reporte)
+                       else:
+                           comando_especiales(info, texto)
 
 
 
