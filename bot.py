@@ -33,10 +33,10 @@ def main():
 
 
             texto = str(leer_mensaje(sms)).lower()
-            wallet_alias = servicio.wallet_usuario(texto)
-            if not wallet_alias == -2:
-                if not wallet_alias == -1:
-                   alias,wallet = wallet_alias
+            alias_wallet = servicio.wallet_usuario(texto)
+            if not alias_wallet == -2:
+                if not alias_wallet == -1:
+                   alias,wallet = alias_wallet
                    mostrar_wallet_usuario(info.id_chat,alias,wallet)
             else:
                 enviar_mensaje(info.id_chat,"Ese usuario no está registrado")
