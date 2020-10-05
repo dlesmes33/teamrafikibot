@@ -249,34 +249,7 @@ def reportes(comando):
     return texto
 
 def advertencia(texto):
-    # La verdad esta funcion se puede optimizar
     warn = ""
-    '''
-    if texto == "/cancelar":
-        warn = "Usted no tiene acceso a usar el comando /cancelar"
-    elif texto == "/cancelar@teamrafikibot":
-        warn = "Usted no tiene acceso a usar el comando /cancelar@teamrafikibot"
-    elif texto == "/agregar_usuario":
-        warn = "Usted no tiene acceso a usar el comando /agregar_usuario"
-    elif texto == "/agregar_usuario@teamrafikibot":
-        warn = "Usted no tiene acceso a usar el comando /agregar_usuario@teamrafikibot"
-    elif texto == "/prestar":
-        warn = "Usted no tiene acceso a usar el comando /prestar"
-    elif texto == "/prestar@teamrafikibot":
-        warn = "Usted no tiene acceso a usar el comando /prestar@teamrafikibot"
-    elif texto == "/rotar":
-        warn = "Usted no tiene acceso a usar el comando /rotar"
-    elif texto == "/rotar@teamrafikibot":
-        warn = "Usted no tiene acceso a usar el comando /rotar@teamrafikibot"
-    elif texto == "/agregar_paquete":
-        warn = "Usted no tiene acceso a usar el comando /agregar_paquete"
-    elif texto == "/agregar_paquete@teamrafikibot":
-        warn = "Usted no tiene acceso a usar el comando /agregar_paquete@teamrafikibot"
-    elif texto == "/wallets":
-        warn = "Usted no tiene acceso a usar el comando /wallets"
-    elif texto == "/wallets@teamrafikibot":
-        warn = "Usted no tiene acceso a usar el comando /wallets@teamrafikibot"
-    '''
     comandos = ["/cancelar","/cancelar@teamrafikibot",
                 "/agregar_usuario","/agregar_usuario@teamrafikibot",
                 "/prestar","/prestar@teamrafikibot",
@@ -470,10 +443,11 @@ def enviar_mencionar(idChat, texto,nick,id):
     return ''
 
 def texto_monoespacio(id_chat,texto):
+    auxiliar = "Testing"+"\n"
     json_data = {
         "chat_id": id_chat,
-        "text": texto,
-        'entities': [{'offset': 0, 'length': len(texto), 'type': 'code'}]
+        "text": auxiliar+texto,
+        'entities': [{'offset': len(auxiliar), 'length': len(texto), 'type': 'code'}]
     }
 
     message_url = BOT_URL + 'sendMessage'
