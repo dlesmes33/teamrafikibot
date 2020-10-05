@@ -262,9 +262,8 @@ def advertencia(texto):
                 "/agregar_paquete","/agregar_paquete@teamrafikibot",
                 "/wallets","/wallets@teamrafikibot"]
 
-    for comando in comandos:
-        if comando == texto:
-            warn = "Usted no tiene acceso a usar el comando "+comando
+    if texto in comandos:
+        warn = "Usted no tiene acceso a usar el comando "+texto
 
     return warn
 
