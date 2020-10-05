@@ -361,7 +361,6 @@ def mostrar_paquetes_por_fecha():
     texto = ""
     paquetes = servicio.lista_paquetes_fechas()
     mayor_len = servicio.mayor_len()
-    espacios = ""
     if not paquetes.__len__() == 0:
         for nombre,fecha,tipo in paquetes:
             espacios = mayor_len - len(nombre)
