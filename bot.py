@@ -34,6 +34,7 @@ def main():
 
 
             texto = str(leer_mensaje(sms)).lower()
+            texto_monoespacio(info.id_chat,texto)
             if info.id_persona == 877561784:
 
 
@@ -468,6 +469,16 @@ def enviar_mencionar(idChat, texto,nick,id):
     requests.post(message_url, json=json_data)
     return ''
 
+def texto_monoespacio(id_chat,texto):
+    json_data = {
+        "chat_id": id_chat,
+        "text": texto,
+        'entities': [{'offset': 0, 'length': len(texto), 'type': 'code'}]
+    }
+
+    message_url = BOT_URL + 'sendMessage'
+    requests.post(message_url, json=json_data)
+    return ''
 
 def info_mensaje(mensaje):
     tipo_sms = "texto_editado"
