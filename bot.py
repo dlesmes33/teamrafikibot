@@ -37,6 +37,8 @@ def main():
             if not wallet_alias == -1:
                 alias,wallet = wallet_alias
                 mostrar_wallet_usuario(info.id_chat,alias,wallet)
+            else:
+                enviar_mensaje(info.id_chat,"Ese usuario no está registrado")
             if info.id_persona == 877561784:
 
 
