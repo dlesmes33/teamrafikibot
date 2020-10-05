@@ -34,7 +34,6 @@ def main():
 
 
             texto = str(leer_mensaje(sms)).lower()
-            enviar_mensaje(info.id_chat,"`"+texto+"`")
             if info.id_persona == 877561784:
 
 
