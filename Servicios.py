@@ -417,7 +417,8 @@ class Servicios():
             print("alias: "+alias)
             lista_un = self.lista_de_personas()
             for row in lista_un:
-                alias_temp = str(row).lower()
+                temp = str(row)
+                alias_temp = temp.lower()
                 print("alias temp "+alias_temp)
                 if alias == alias_temp:
                     c = Conexion.Conexion()
@@ -425,11 +426,13 @@ class Servicios():
                     param_list = [alias]
                     miCursor.execute("SELECT wallet FROM usuario WHERE nombre_usuario = %s", param_list)
                     tabla = miCursor.fetchall()
+                    wallet = ""
                     for row in tabla:
                         wallet = row[0]
                     miCursor.close()
-                    wallet_alias = alias, wallet
-                    return wallet_alias
+                    if not wallet == "":
+                        wallet_alias = alias, wallet
+                        return wallet_alias
 
         return -1
 
