@@ -363,12 +363,7 @@ def mostrar_paquetes_por_fecha():
     mayor_len = servicio.mayor_len()
     if not paquetes.__len__() == 0:
         for nombre,fecha,tipo in paquetes:
-            espacios = mayor_len - len(nombre)
-            relleno = " "*espacios
-            if espacios == 0:
-                texto += nombre + "  " + str(fecha) + "  " + str(tipo) + "\n"
-            else:
-                texto += nombre +relleno+"  " + str(fecha) + "  " + str(tipo) + "\n"
+            texto += str(fecha) + "  " + str(tipo) + "  " + nombre  + "\n"
     else:
         texto = "No hay ningún paquete comprado en este momento"
     return texto
