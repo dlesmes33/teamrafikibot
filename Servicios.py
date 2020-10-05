@@ -416,11 +416,9 @@ class Servicios():
             alias = texto[8:]
             print("alias: "+alias)
             lista_un = self.lista_de_personas()
-            for row in lista_un:
-                temp = str(row)
-                alias_temp = temp.lower()
-                print("alias temp "+alias_temp)
-                if alias == alias_temp:
+            for alias_temp in lista_un:
+
+                if alias == str(alias_temp).lower():
                     c = Conexion.Conexion()
                     miCursor = c.miConexion.cursor()
                     param_list = [alias]
@@ -431,7 +429,7 @@ class Servicios():
                         wallet = row[0]
                     miCursor.close()
                     if not wallet == "":
-                        wallet_alias = alias, wallet
+                        wallet_alias = alias_temp, wallet
                         return wallet_alias
 
         return -1
