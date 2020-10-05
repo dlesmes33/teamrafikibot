@@ -35,12 +35,13 @@ def main():
             texto = str(leer_mensaje(sms)).lower()
             wallet_alias = servicio.wallet_usuario(texto)
             if not wallet_alias == -1:
-                alias,wallet = wallet_alias
-                mostrar_wallet_usuario(info.id_chat,alias,wallet)
+                if not wallet_alias == -2:
+                   alias,wallet = wallet_alias
+                   mostrar_wallet_usuario(info.id_chat,alias,wallet)
             else:
                 enviar_mensaje(info.id_chat,"Ese usuario no está registrado")
-            if info.id_persona == 877561784:
 
+            if info.id_persona == 877561784:
 
                 if texto == "/cancelar" or texto == "/cancelar@teamrafikibot":
                     servicio.set_variable("paso", "0")

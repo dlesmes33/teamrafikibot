@@ -432,7 +432,10 @@ class Servicios():
                         wallet_alias = alias_temp, wallet
                         return wallet_alias
 
-        return -1
+        else:
+            return -1
+        return -2
+
 
 	
 '''
