@@ -34,8 +34,8 @@ def main():
 
             texto = str(leer_mensaje(sms)).lower()
             wallet_alias = servicio.wallet_usuario(texto)
-            if not wallet_alias == -1:
-                if not wallet_alias == -2:
+            if not wallet_alias == -2:
+                if not wallet_alias == -1:
                    alias,wallet = wallet_alias
                    mostrar_wallet_usuario(info.id_chat,alias,wallet)
             else:
