@@ -418,6 +418,7 @@ class Servicios():
             lista_un = self.lista_de_personas()
             for row in lista_un:
                 alias_temp = str(row)
+                print("alias temp "+alias_temp)
                 if alias == alias_temp:
                     c = Conexion.Conexion()
                     miCursor = c.miConexion.cursor()
