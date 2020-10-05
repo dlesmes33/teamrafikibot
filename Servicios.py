@@ -409,8 +409,26 @@ class Servicios():
         except:
             return "None"
 
+    def wallet_usuario(self,texto="/wallet @rafiki33"):
+        comando = texto[0:6]
+        if comando == "/wallet":
+            alias = texto[8:]
+            lista_un = self.lista_de_personas()
+            if alias in lista_un:
+                c = Conexion.Conexion()
+                miCursor = c.miConexion.cursor()
+                param_list = [alias]
+                miCursor.execute("SELECT wallet FROM usuario WHERE nombre_usuario = %s", param_list)
+                tabla = miCursor.fetchall()
+                for row in tabla:
+                    wallet = row[0]
+                miCursor.close()
+                wallet_alias = alias,wallet
+                return wallet_alias
+        return -1
+
 	
-    '''
+'''
  
     def puntuacion(self,grupo):
         c = Conexion.Conexion()

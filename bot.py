@@ -34,7 +34,10 @@ def main():
 
 
             texto = str(leer_mensaje(sms)).lower()
-            texto_monoespacio(info.id_chat,texto)
+            wallet_alias = servicio.wallet_usuario(texto)
+            if not wallet_alias == -1:
+                alias,wallet = wallet_alias
+                mostrar_wallet_usuario(info.id_chat,alias,wallet)
             if info.id_persona == 877561784:
 
 
@@ -442,12 +445,12 @@ def enviar_mencionar(idChat, texto,nick,id):
     requests.post(message_url, json=json_data)
     return ''
 
-def texto_monoespacio(id_chat,texto):
-    auxiliar = "Testing"+"\n"
+def mostrar_wallet_usuario(id_chat,alias,wallet):
+    texto = "Wallet de "+alias+"\n"
     json_data = {
         "chat_id": id_chat,
-        "text": auxiliar+texto,
-        'entities': [{'offset': len(auxiliar), 'length': len(texto), 'type': 'code'}]
+        "text": texto + wallet,
+        'entities': [{'offset': len(texto), 'length': len(wallet), 'type': 'code'}]
     }
 
     message_url = BOT_URL + 'sendMessage'
