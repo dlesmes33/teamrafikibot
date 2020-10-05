@@ -33,13 +33,7 @@ def main():
 
 
             texto = str(leer_mensaje(sms)).lower()
-            alias_wallet = servicio.wallet_usuario(texto)
-            if not alias_wallet == -2:
-                if not alias_wallet == -1:
-                   alias,wallet = alias_wallet
-                   mostrar_wallet_usuario(info.id_chat,alias,wallet)
-            else:
-                enviar_mensaje(info.id_chat,"Ese usuario no está registrado")
+
 
             if info.id_persona == 877561784:
 
@@ -208,6 +202,9 @@ def main():
                 reporte = reportes(texto)
                 if not  reporte == "":
                     enviar_mensaje(info.id_chat, reporte)
+                else:
+                    comando_especiales(info,texto)
+
         else:
             text = str(leer_mensaje(sms)).lower()
             enviar_mensaje(info.id_chat,"Usted no está registrado"+"\n"+"Para más información entre a este grupo"+"\n"+"\n"+"Team rafiki No Registrados"+"\n"+"https://t.me/joinchat/AAAAAFFkD3as9fTMvGuQWw")
@@ -216,9 +213,6 @@ def main():
             else:
                    enviar_mencionar(877561784,text,info.persona,info.id_persona)
     return ''
-
-
-
 
 
 def reportes(comando):
@@ -266,6 +260,18 @@ def advertencia(texto):
         warn = "Usted no tiene acceso a usar el comando "+texto
 
     return warn
+
+def comando_especiales(info,texto):
+    comando_wallet(info,texto)
+
+def comando_wallet(info,texto):
+    alias_wallet = servicio.wallet_usuario(texto)
+    if not alias_wallet == -2:
+        if not alias_wallet == -1:
+            alias, wallet = alias_wallet
+            mostrar_wallet_usuario(info.id_chat, alias, wallet)
+    else:
+        enviar_mensaje(info.id_chat, "Ese usuario no está registrado")
 
 def ListaOrganizada():
     texto = ""
