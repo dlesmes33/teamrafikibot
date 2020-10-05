@@ -424,7 +424,7 @@ class Servicios():
                     c = Conexion.Conexion()
                     miCursor = c.miConexion.cursor()
                     param_list = [alias]
-                    miCursor.execute("SELECT wallet FROM usuario WHERE nombre_usuario = %s", param_list)
+                    miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
                     tabla = miCursor.fetchall()
                     wallet = ""
                     for row in tabla:
