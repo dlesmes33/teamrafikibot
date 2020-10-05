@@ -416,17 +416,20 @@ class Servicios():
             alias = texto[8:]
             print("alias: "+alias)
             lista_un = self.lista_de_personas()
-            if alias in lista_un:
-                c = Conexion.Conexion()
-                miCursor = c.miConexion.cursor()
-                param_list = [alias]
-                miCursor.execute("SELECT wallet FROM usuario WHERE nombre_usuario = %s", param_list)
-                tabla = miCursor.fetchall()
-                for row in tabla:
-                    wallet = row[0]
-                miCursor.close()
-                wallet_alias = alias,wallet
-                return wallet_alias
+            for row in lista_un:
+                alias_temp = str(row)
+                if alias == alias_temp:
+                    c = Conexion.Conexion()
+                    miCursor = c.miConexion.cursor()
+                    param_list = [alias]
+                    miCursor.execute("SELECT wallet FROM usuario WHERE nombre_usuario = %s", param_list)
+                    tabla = miCursor.fetchall()
+                    for row in tabla:
+                        wallet = row[0]
+                    miCursor.close()
+                    wallet_alias = alias, wallet
+                    return wallet_alias
+
         return -1
 
 	
