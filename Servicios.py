@@ -410,10 +410,10 @@ class Servicios():
             return "None"
 
     def wallet_usuario(self,texto="/wallet @rafiki33"):
-        comando = texto[0:6]
+        comando = texto[0:7]
         print("comando: "+comando)
         if comando == "/wallet":
-            alias = texto[8:]
+            alias = texto[9:]
             print("alias: "+alias)
             lista_un = self.lista_de_personas()
             if alias in lista_un:
