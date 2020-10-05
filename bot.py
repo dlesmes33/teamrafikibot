@@ -360,9 +360,15 @@ def buscar_paquete(lista, paquete):
 def mostrar_paquetes_por_fecha():
     texto = ""
     paquetes = servicio.lista_paquetes_fechas()
+    mayor_len = servicio.mayor_len()
+    espacios = ""
     if not paquetes.__len__() == 0:
         for nombre,fecha,tipo in paquetes:
-            texto += nombre + "  " + str(fecha) + "  " + str(tipo) + "\n"
+            espacios = mayor_len - len(nombre)
+            if espacios == 0:
+                texto += nombre + "  " + str(fecha) + "  " + str(tipo) + "\n"
+            else:
+                texto += nombre +" "*espacios+"  " + str(fecha) + "  " + str(tipo) + "\n"
     else:
         texto = "No hay ningún paquete comprado en este momento"
     return texto
@@ -388,55 +394,16 @@ def mostrar_wallets():
     return texto
 
 
-
-
-'''
-@app.route('/',methods=['Post'])
-def main():
-        paso = 0
-        sms = request.json
-        info = info_mensaje(sms)
-        lista = ['877561784']
-        print(sms)
-        if not info.is_bot and info.tipo_sms == "texto":
-            texto = str(leer_mensaje(sms)).lower()
-            if texto == "/agregar":
-                servicio.insertar_persona(33,"pene")
-                enviar_mensaje(info.id_chat, "Insertado")
-            elif texto == "/prestar":
-                enviar_mensaje(info.id_chat, "Escriba el nombre del que va a prestar")
-            elif texto == "/rotar":
-                enviar_mensaje(info.id_chat, "Rotando...")
-            elif texto == "/imprimir":
-                aux = servicio.imprimir_personas()
-                enviar_mensaje(info.id_chat,aux)
-			elif texto == "/poninas@TeamRafikiBot":
-			    poninas = "�Qu� son estas poninas?"+"\n"+"Las poninas son una estrategia creada con el fin de beneficiar a todos los miembros del equipo que participen en las mismas. Los participantes cada vez que se pueda se unir�n y le har�n prestados al miembro del equipo de turno para que este se pueda comprar un nuevo paquete de 15. Una vez comprado el paquete, el miembro beneficiado proceder� a devolver el dinero que le fue prestado y posteriormente se unir� al resto para ayudar a otro miembro coloc�ndose de �ltimo en la cola para recibir nuevos pr�stamos. Los pr�stamos se har�n en forma de rotaci�n."
-                enviar_mensaje(info.id_chat,poninas)
-			elif texto == "/beneficios":
-			    beneficios = "�Qu� beneficios trae?"+"\n"+"Con esta estrategia cada participante podr� aumentar su capital invertido independientemente de si logra tener referidos o no, adem�s no tendr� que esperar los 5 meses para comprarse un nuevo paquete por el mismo (Al final todos hemos entrado con paquetes de $15 y sin conseguir referidos habr�a que esperar esos 5 meses para poder comenzar a hacer inter�s compuesto en solitario)"
-                enviar_mensaje(info.id_chat,beneficios)	
-        return ''
-'''
 def leer_mensaje(mensaje):
     texto = mensaje['message']['text']
     return texto
 
-def str_puntuacion(lista):
-    result = "Puntos 💜"+ "\n"
-    for i in lista:
-        nombre = i.nombre_persona
-        puntos = i.cantidad
-        result = result + nombre + "-->"
-        result = result + str(puntos) + "\n"
-    return result
 
 def enviar_mensaje(idChat, texto):
     json_data = {
         "chat_id": idChat,
         "text": texto,
     }
-
 
     message_url = BOT_URL + 'sendMessage'
     requests.post(message_url, json=json_data)
@@ -515,12 +482,6 @@ def obtener_alias():
 
 def unix_date(fecha):
         return datetime.fromtimestamp(fecha).time()
-
-
-
-
-
-    
 
 if __name__ == '__main__':  
         app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
