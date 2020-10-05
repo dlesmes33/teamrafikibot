@@ -1,3 +1,5 @@
+from docutils.nodes import entry
+
 from Info_Mensaje import Info_Mensaje
 import json
 import Servicios
@@ -448,15 +450,18 @@ def enviar_mencionar(idChat, texto,nick,id):
     return ''
 
 def mostrar_wallet_usuario(id_chat,alias,wallet):
-    texto = "Wallet de "+alias+"\n"
-    json_data = {
-        "chat_id": id_chat,
-        "text": texto + wallet,
-        'entities': [{'offset': len(texto), 'length': len(wallet), 'type': 'code'}]
-    }
+    if not wallet == None:
+        texto = "Wallet de " + alias + "\n"
+        json_data = {
+            "chat_id": id_chat,
+            "text": texto + wallet,
+            'entities': [{'offset': len(texto), 'length': len(wallet), 'type': 'code'}]
+        }
 
-    message_url = BOT_URL + 'sendMessage'
-    requests.post(message_url, json=json_data)
+        message_url = BOT_URL + 'sendMessage'
+        requests.post(message_url, json=json_data)
+    else:
+       enviar_mensaje(id_chat,"El usuario "+alias+" no tiene wallet registrada")
     return ''
 
 def info_mensaje(mensaje):
