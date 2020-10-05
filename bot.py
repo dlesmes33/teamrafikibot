@@ -22,7 +22,6 @@ def main():
     lista = servicio.lista_de_id()
 
     print(sms)
-    print(info.tipo_chat)
 
     if not info.is_bot and info.tipo_sms == "texto":
         if str(info.id_persona) in lista:
@@ -496,7 +495,6 @@ def info_mensaje(mensaje):
         date = mensaje['message']['date']
         if "username" in mensaje["message"]['from']:
            username ="@" + mensaje['message']['from']['username']
-           print("desde info mensaje" +username)
     return Info_Mensaje(persona, id_persona , bot, chat, id_chat, tipo_chat, tipo_sms, date, update_id, username)
 
 def obtener_alias():

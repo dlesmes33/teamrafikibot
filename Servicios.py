@@ -411,8 +411,10 @@ class Servicios():
 
     def wallet_usuario(self,texto="/wallet @rafiki33"):
         comando = texto[0:6]
+        print("comando: "+comando)
         if comando == "/wallet":
             alias = texto[8:]
+            print("alias: "+alias)
             lista_un = self.lista_de_personas()
             if alias in lista_un:
                 c = Conexion.Conexion()
