@@ -436,6 +436,18 @@ class Servicios():
             return -1
         return -2
 
+    def mayor_len(self):
+        mayor = 0
+        alias_mayor_len = ""
+        lista_un = self.lista_de_personas()
+        for temp in lista_un:
+            alias = str(temp)
+            if alias.__len__() > mayor:
+                mayor = alias.__len__()
+                alias_mayor_len = alias
+        print("Alias mayor len: "+alias_mayor_len)
+        return mayor
+
 
 	
 '''
