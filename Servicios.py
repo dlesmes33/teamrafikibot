@@ -417,7 +417,7 @@ class Servicios():
             print("alias: "+alias)
             lista_un = self.lista_de_personas()
             for row in lista_un:
-                alias_temp = str(row)
+                alias_temp = str(row).lower()
                 print("alias temp "+alias_temp)
                 if alias == alias_temp:
                     c = Conexion.Conexion()
