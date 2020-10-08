@@ -424,7 +424,7 @@ class Servicios():
                             for row in tabla:
                                 wallet = row[0]
                             miCursor.close()
-                            if usuario_encontrado:
+                        if usuario_encontrado:
                                 if not wallet == "":
                                     wallet_alias = alias_temp, wallet
                                     return wallet_alias
