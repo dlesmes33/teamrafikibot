@@ -428,7 +428,7 @@ class Servicios():
                                 if not wallet == "":
                                     wallet_alias = alias_temp, wallet
                                     return wallet_alias
-                            else:
+                        else:
                                 return "No encontrado"
                 else:
                     return "No usuario"
