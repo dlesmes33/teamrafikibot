@@ -408,22 +408,25 @@ class Servicios():
         if comando == "/wallet":
             alias = texto[8:]
             print("alias: "+alias)
-            lista_un = self.lista_de_personas()
-            for alias_temp in lista_un:
+            if not alias == "":
+                lista_un = self.lista_de_personas()
+                for alias_temp in lista_un:
 
-                if alias == str(alias_temp).lower():
-                    c = Conexion.Conexion()
-                    miCursor = c.miConexion.cursor()
-                    param_list = [alias]
-                    miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
-                    tabla = miCursor.fetchall()
-                    wallet = ""
-                    for row in tabla:
-                        wallet = row[0]
-                    miCursor.close()
-                    if not wallet == "":
-                        wallet_alias = alias_temp, wallet
-                        return wallet_alias
+                    if alias == str(alias_temp).lower():
+                        c = Conexion.Conexion()
+                        miCursor = c.miConexion.cursor()
+                        param_list = [alias]
+                        miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
+                        tabla = miCursor.fetchall()
+                        wallet = ""
+                        for row in tabla:
+                            wallet = row[0]
+                        miCursor.close()
+                        if not wallet == "":
+                            wallet_alias = alias_temp, wallet
+                            return wallet_alias
+                    else:
+                        return -3
 
         else:
             return -1
