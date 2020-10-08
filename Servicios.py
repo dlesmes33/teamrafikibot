@@ -425,8 +425,8 @@ class Servicios():
                         if not wallet == "":
                             wallet_alias = alias_temp, wallet
                             return wallet_alias
-                    else:
-                        return -3
+            else:
+                    return -3
 
         else:
             return -1
