@@ -401,15 +401,18 @@ class Servicios():
             return texto
         except:
             return "None"
+
     def reconocer_comando(self,texto="/comando"):
         retorno = ""
-        comando = texto[0:7]
-        if comando == "/wallet":
+        comando = texto[0:22]
+        if comando == "/wallet@teamrafikibot":
             retorno = "/wallet"
         else:
-            comando = texto[0:22]
-            if comando == "/wallet@teamrafikibot":
+            if comando == "/wallet":
                 retorno = "/wallet"
+            comando = texto[0:7]
+            print("reconocer comando "+comando)
+
 
         return retorno
 
