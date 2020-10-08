@@ -158,7 +158,7 @@ class Servicios():
     def validar_nombreUsuario(self ,cadena="@a"):
         estado = False
         un = cadena[1:]
-        print(un)
+        print("validando: "+un)
         if cadena[0] == '@' and un.__len__() > 4 and un.isidentifier():
             estado = True
         return estado

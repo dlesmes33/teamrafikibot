@@ -268,15 +268,6 @@ def comando_especiales(info,texto):
 
 def comando_wallet(info,texto):
     alias_wallet = servicio.wallet_usuario(texto)
-    '''
-                        return "No encontrado"
-                else:
-                    return "No usuario"
-            else:
-                    return "/wallet"
-        else:
-            return "No /wallet"
-    '''
     if not alias_wallet == "No /wallet":
         if not alias_wallet == "No encontrado":
             if not alias_wallet == "/wallet":
