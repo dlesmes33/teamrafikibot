@@ -409,28 +409,34 @@ class Servicios():
             alias = texto[8:]
             print("alias: "+alias)
             if not alias == "":
-                lista_un = self.lista_de_personas()
-                for alias_temp in lista_un:
-
-                    if alias == str(alias_temp).lower():
-                        c = Conexion.Conexion()
-                        miCursor = c.miConexion.cursor()
-                        param_list = [alias]
-                        miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
-                        tabla = miCursor.fetchall()
-                        wallet = ""
-                        for row in tabla:
-                            wallet = row[0]
-                        miCursor.close()
-                        if not wallet == "":
-                            wallet_alias = alias_temp, wallet
-                            return wallet_alias
+                if self.validar_nombreUsuario(alias):
+                    lista_un = self.lista_de_personas()
+                    for alias_temp in lista_un:
+                        usuario_encontrado = False
+                        if alias == str(alias_temp).lower():
+                            usuario_encontrado = True
+                            c = Conexion.Conexion()
+                            miCursor = c.miConexion.cursor()
+                            param_list = [alias]
+                            miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
+                            tabla = miCursor.fetchall()
+                            wallet = ""
+                            for row in tabla:
+                                wallet = row[0]
+                            miCursor.close()
+                            if usuario_encontrado:
+                                if not wallet == "":
+                                    wallet_alias = alias_temp, wallet
+                                    return wallet_alias
+                            else:
+                                return "No encontrado"
+                else:
+                    return "No usuario"
             else:
-                    return -3
-
+                    return "/wallet"
         else:
-            return -1
-        return -2
+            return "No /wallet"
+
 
 
 

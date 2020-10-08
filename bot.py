@@ -268,15 +268,27 @@ def comando_especiales(info,texto):
 
 def comando_wallet(info,texto):
     alias_wallet = servicio.wallet_usuario(texto)
-    if not alias_wallet == -2:
-        if not alias_wallet == -3:
-            if not alias_wallet == -1:
-                alias, wallet = alias_wallet
-                mostrar_wallet_usuario(info.id_chat, alias, wallet)
+    '''
+                        return "No encontrado"
+                else:
+                    return "No usuario"
+            else:
+                    return "/wallet"
         else:
-            enviar_mensaje(info.id_chat,"Por favor introduzca un nombre de usuario"+"\n"+"Por ejemplo: /wallet @username")
-    else:
-        enviar_mensaje(info.id_chat, "Ese usuario no está registrado")
+            return "No /wallet"
+    '''
+    if not alias_wallet == "No /wallet":
+        if not alias_wallet == "No encontrado":
+            if not alias_wallet == "/wallet":
+                if not alias_wallet == "No usuario":
+                        alias, wallet = alias_wallet
+                        mostrar_wallet_usuario(info.id_chat, alias, wallet)
+                else:
+                    enviar_mensaje(info.id_chat,"Introduzca correctamente un nombre de usuario")
+            else:
+                enviar_mensaje(info.id_chat,"Por favor introduzca un nombre de usuario" + "\n" + "Por ejemplo: /wallet @username")
+        else:
+            enviar_mensaje(info.id_chat, "Ese usuario no está registrado")
 
 def ListaOrganizada():
     texto = ""
