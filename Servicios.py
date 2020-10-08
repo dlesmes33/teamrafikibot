@@ -401,9 +401,20 @@ class Servicios():
             return texto
         except:
             return "None"
+    def reconocer_comando(self,texto="/comando"):
+        retorno = ""
+        comando = texto[0:7]
+        if comando == "/wallet":
+            retorno = "/wallet"
+        else:
+            comando = texto[0:22]
+            if comando == "/wallet@teamrafikibot":
+                retorno = "/wallet"
+
+        return retorno
 
     def wallet_usuario(self,texto="/wallet @rafiki33"):
-        comando = texto[0:7]
+        comando = self.reconocer_comando(texto)
         print("comando: "+comando)
         if comando == "/wallet":
             alias = texto[8:]
