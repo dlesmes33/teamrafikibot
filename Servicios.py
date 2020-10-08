@@ -405,13 +405,15 @@ class Servicios():
     def reconocer_comando(self,texto="/comando"):
         retorno = ""
         comando = texto[0:22]
+        print("reconocer comando " + comando)
         if comando == "/wallet@teamrafikibot":
             retorno = "/wallet"
         else:
+            comando = texto[0:7]
             if comando == "/wallet":
                 retorno = "/wallet"
-            comando = texto[0:7]
-            print("reconocer comando "+comando)
+
+
 
 
         return retorno
