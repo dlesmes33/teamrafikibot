@@ -22,7 +22,7 @@ def main():
     lista = servicio.lista_de_id()
 
     print(sms)
-    print("Mayor len es: "+str(servicio.mayor_len()))
+
     if not info.is_bot and info.tipo_sms == "texto":
         if str(info.id_persona) in lista:
             alias = servicio.cambio_alias(info.username, str(info.id_persona))
