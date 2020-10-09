@@ -415,6 +415,38 @@ class Servicios():
         print("retornando " + retorno)
         return retorno
 
+    def wallet_usuario(self, texto=""):
+        comando = self.reconocer_comando(texto)
+        print("comando: " + comando)
+        if comando == "/wallet":
+            alias = texto[8:]
+            print("alias: " + alias)
+            if not alias == "":
+                if self.validar_nombreUsuario(alias):
+                    lista_un = self.lista_de_personas()
+
+                    for alias_temp in lista_un:
+                        print("for alias temp " + str(alias_temp).lower())
+                        print("for alias " + alias)
+                        if alias == str(alias_temp).lower():
+                            usuario_encontrado = True
+                            c = Conexion.Conexion()
+                            miCursor = c.miConexion.cursor()
+                            param_list = [alias_temp]
+                            miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
+                            tabla = miCursor.fetchall()
+                            wallet = ""
+                            for row in tabla:
+                                wallet = row[0]
+                            miCursor.close()
+
+                        if not wallet == "":
+                            print("wallet " + wallet)
+                            print("alias " + alias_temp)
+                            wallet_alias = alias_temp, wallet
+                            return wallet_alias
+
+
 '''
     def wallet_usuario(self,texto=""):
         comando = self.reconocer_comando(texto)
@@ -456,38 +488,6 @@ class Servicios():
         else:
             return "No /wallet"
 '''
-
-
-def wallet_usuario(self, texto=""):
-    comando = self.reconocer_comando(texto)
-    print("comando: " + comando)
-    if comando == "/wallet":
-        alias = texto[8:]
-        print("alias: " + alias)
-        if not alias == "":
-            if self.validar_nombreUsuario(alias):
-                lista_un = self.lista_de_personas()
-
-                for alias_temp in lista_un:
-                    print("for alias temp " + str(alias_temp).lower())
-                    print("for alias " + alias)
-                    if alias == str(alias_temp).lower():
-                        usuario_encontrado = True
-                        c = Conexion.Conexion()
-                        miCursor = c.miConexion.cursor()
-                        param_list = [alias_temp]
-                        miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
-                        tabla = miCursor.fetchall()
-                        wallet = ""
-                        for row in tabla:
-                            wallet = row[0]
-                        miCursor.close()
-
-                    if not wallet == "":
-                            print("wallet " + wallet)
-                            print("alias " + alias_temp)
-                            wallet_alias = alias_temp, wallet
-                            return wallet_alias
 
 
 
