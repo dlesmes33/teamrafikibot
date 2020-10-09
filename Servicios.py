@@ -428,23 +428,22 @@ class Servicios():
                     for alias_temp in lista_un:
                         print("for alias temp " + str(alias_temp).lower())
                         print("for alias " + alias)
-                        if alias == str(alias_temp).lower():
-                            usuario_encontrado = True
+                        if alias == str(alias_temp).lower():                           
                             c = Conexion.Conexion()
                             miCursor = c.miConexion.cursor()
                             param_list = [alias_temp]
                             miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
                             tabla = miCursor.fetchall()
-                            wallet = ""
+
                             for row in tabla:
                                 wallet = row[0]
                             miCursor.close()
 
-                        if not wallet == "":
-                            print("wallet " + wallet)
-                            print("alias " + alias_temp)
-                            wallet_alias = alias_temp, wallet
-                            return wallet_alias
+                            if not wallet == "":
+                                print("wallet " + wallet)
+                                print("alias " + alias_temp)
+                                wallet_alias = alias_temp, wallet
+                                return wallet_alias
 
 
 '''
