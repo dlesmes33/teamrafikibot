@@ -412,10 +412,7 @@ class Servicios():
             comando = texto[0:7]
             if comando == "/wallet":
                 retorno = "/wallet"
-
-
-
-
+        print("retornando " + retorno)
         return retorno
 
     def wallet_usuario(self,texto=""):
@@ -444,6 +441,7 @@ class Servicios():
                                 if not wallet == "":
                                     wallet_alias = alias_temp, wallet
                                     return wallet_alias
+
                         else:
                                 return "No encontrado"
                 else:
