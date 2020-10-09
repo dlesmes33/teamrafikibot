@@ -418,7 +418,7 @@ class Servicios():
 
         return retorno
 
-    def wallet_usuario(self,texto="/wallet @rafiki33"):
+    def wallet_usuario(self,texto=""):
         comando = self.reconocer_comando(texto)
         print("comando: "+comando)
         if comando == "/wallet":
