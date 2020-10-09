@@ -440,6 +440,8 @@ class Servicios():
                             miCursor.close()
                         if usuario_encontrado:
                                 if not wallet == "":
+                                    print("wallet "+wallet)
+                                    print("alias "+alias_temp)
                                     wallet_alias = alias_temp, wallet
                                     return wallet_alias
 
