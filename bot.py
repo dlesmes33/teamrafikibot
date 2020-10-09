@@ -265,7 +265,7 @@ def advertencia(texto):
 
 def comando_especiales(info,texto):
     comando_wallet(info,texto)
-
+'''
 def comando_wallet(info,texto):
     alias_wallet = servicio.wallet_usuario(texto)
     if not alias_wallet == "No /wallet":
@@ -280,6 +280,12 @@ def comando_wallet(info,texto):
                 enviar_mensaje(info.id_chat,"Por favor introduzca un nombre de usuario" + "\n" + "Por ejemplo: /wallet @username")
         else:
             enviar_mensaje(info.id_chat, "Ese usuario no está registrado")
+'''
+def comando_wallet(info,texto):
+    alias_wallet = servicio.wallet_usuario(texto)
+    alias, wallet = alias_wallet
+    mostrar_wallet_usuario(info.id_chat, alias, wallet)
+
 
 def ListaOrganizada():
     texto = ""
