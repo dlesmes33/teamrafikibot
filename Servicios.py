@@ -417,6 +417,7 @@ class Servicios():
 
     def wallet_usuario(self, texto=""):
         comando = self.reconocer_comando(texto)
+        wallet = ""
         print("comando: " + comando)
         if comando == "/wallet":
             alias = texto[8:]
