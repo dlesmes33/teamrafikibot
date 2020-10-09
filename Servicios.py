@@ -422,7 +422,7 @@ class Servicios():
             alias = texto[8:]
             print("alias: "+alias)
             if not alias == "":
-                if self.validar_nombreUsuario(alias):
+                #if self.validar_nombreUsuario(alias):
                     lista_un = self.lista_de_personas()
                     for alias_temp in lista_un:
                         usuario_encontrado = False
@@ -444,8 +444,8 @@ class Servicios():
 
                         else:
                                 return "No encontrado"
-                else:
-                    return "No usuario"
+                #else:
+                 #   return "No usuario"
             else:
                     return "/wallet"
         else:
