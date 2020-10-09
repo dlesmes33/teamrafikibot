@@ -439,7 +439,7 @@ class Servicios():
                             for row in tabla:
                                 wallet = row[0]
                             miCursor.close()
-
+                            print("wallet fresquita" + wallet)
                             if not wallet == "":
                                 print("wallet " + wallet)
                                 print("alias " + alias_temp)
