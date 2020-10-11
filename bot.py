@@ -264,9 +264,10 @@ def comando_wallet(info,texto):
     try:
         if alias_wallet == "ne":
             enviar_mensaje(info.id_chat, "Ese usuario no está registrado")
-        else:
+        elif not alias_wallet == "we":
             alias, wallet = alias_wallet
             mostrar_wallet_usuario(info.id_chat, alias, wallet)
+
     except:
         if alias_wallet == "ne":
             enviar_mensaje(info.id_chat, "Ese usuario no está registrado")
