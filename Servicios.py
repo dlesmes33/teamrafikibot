@@ -446,6 +446,14 @@ class Servicios():
                                 wallet_alias = alias_temp, wallet
                                 return wallet_alias
 
+    def validar_id(self,text =""):
+        resto = text[1:]
+        if (not text[0].isdigit() and not text[0] == '-')or len(text) < 7:
+            return False
+        for c in resto:
+            if not c.isdigit():
+                return False
+        return True
 
 '''
     def wallet_usuario(self,texto=""):

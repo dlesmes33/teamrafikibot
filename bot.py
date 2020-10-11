@@ -32,8 +32,9 @@ def main():
                 enviar_mensaje(info.id_chat,alias)
 
 
-            texto = str(leer_mensaje(sms)).lower()
 
+            texto_mayus = str(leer_mensaje(sms))
+            texto = texto_mayus.lower()
 
             if info.id_persona == 877561784:
 
@@ -46,7 +47,7 @@ def main():
                         enviar_mensaje(info.id_chat, "Escriba el nombre de usuario")
 
                     elif texto == "/prestar" or texto == "/prestar@teamrafikibot":
-                        servicio.set_variable("paso","3")
+                        servicio.set_variable("paso", "3")
                         enviar_mensaje(info.id_chat, "Escriba el nombre del que va a prestar")
 
                     elif texto == "/rotar" or texto == "/rotar@teamrafikibot":
@@ -62,9 +63,9 @@ def main():
                         enviar_mensaje(info.id_chat,mostrar_wallets())
 
                     else:
-                       reporte =  reportes(texto)
+                       reporte = reportes(texto)
                        if not reporte == "":
-                           enviar_mensaje(info.id_chat,reporte)
+                           enviar_mensaje(info.id_chat, reporte)
                        else:
                            comando_especiales(info, texto)
 
@@ -72,62 +73,39 @@ def main():
 
                 elif paso == "1":
                     lista_un = servicio.lista_de_personas()
-
-                    if not texto in lista_un:
-                        if not servicio.validar_nombreUsuario(texto):
-                            enviar_mensaje(info.id_chat,"Por favor introduzca correctamente el nombre de usuario de la persona que quiere agregar o escriba /cancelar para salir")
-                            paso = "1.5"
-                            servicio.set_variable("paso","1.5")
-                        if paso == "1":
-                            servicio.set_variable("p1",texto)
-                            servicio.set_variable("paso","2")
-                            enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
-                    else:
-
-                        enviar_mensaje(info.id_chat, "Ese usuario ya esta registrado intentelo de nuevo o escriba /cancelar para salir")
-
-                elif paso == "1.5":
-                    lista_un = servicio.lista_de_personas()
-                    if not texto in lista_un:
-                        if not servicio.validar_nombreUsuario(texto):
-                            enviar_mensaje(info.id_chat,"Por favor introduzca correctamente el nombre de usuario de la persona que quiere agregar o escriba /cancelar para salir")
-                        else:
-                            servicio.set_variable("p1", texto)
+                    if not servicio.validar_nombreUsuario(texto):
+                        if not texto_mayus in lista_un:
+                            servicio.set_variable("p1", texto_mayus)
                             servicio.set_variable("paso", "2")
                             enviar_mensaje(info.id_chat, "Escriba el id del usuario en telegram")
+                        else:
+                            enviar_mensaje(info.id_chat, "Ese usuario ya esta registrado intentelo de nuevo o escriba /cancelar para salir")
                     else:
-                        enviar_mensaje(info.id_chat,"Ese usuario ya esta registrado intentelo de nuevo o escriba /cancelar para salir")
+                        enviar_mensaje(info.id_chat,
+                                       "Por favor introduzca correctamente el nombre de usuario de la persona que quiere agregar o escriba /cancelar para salir")
 
                 elif paso == "2":
-                    if not texto in lista:
-
-                        servicio.set_variable("p2",texto)
-                        enviar_mensaje(info.id_chat, "Va ha hacer el registro de:\nusuario: "+servicio.get_variable("p1")+"\nid_telegram: "+
-                                       servicio.get_variable("p2")+"\nEscriba ok para continuar o /cancelar para cancelar")
-                        servicio.set_variable("paso", "2.5")
-
+                    if servicio.validar_id(texto):
+                        if not texto_mayus in lista:
+                            servicio.set_variable("p2",texto_mayus)
+                            enviar_mensaje(info.id_chat, "Va ha hacer el registro de:\nusuario: "+servicio.get_variable("p1")+"\nid_telegram: "+
+                                           servicio.get_variable("p2")+"\nEscriba ok para continuar o /cancelar para cancelar")
+                            servicio.set_variable("paso", "2.5")
+                        else:
+                            enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /cancelar para salir")
                     else:
-
-                        enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /cancelar para salir")
-
+                        enviar_mensaje(info.id_chat, "El id son solo numeros \n Escriba /cancelar para salir")
                 elif paso == "2.5":
-                    if not texto in lista:
-
-                        servicio.insertar_persona(servicio.get_variable("p1"),servicio.get_variable("p2") )
-                        enviar_mensaje(info.id_chat, "Operación realizada")
-                        servicio.set_variable("paso", "0")
-                        servicio.set_variable("p1", "None")
-                    else:
-
-                        enviar_mensaje(info.id_chat, "Ese id ya esta registrado \n Escriba /cancelar para salir")
-
-
+                    servicio.insertar_persona(servicio.get_variable("p1"), servicio.get_variable("p2"))
+                    enviar_mensaje(info.id_chat, "Operación realizada")
+                    servicio.set_variable("paso", "0")
+                    servicio.set_variable("p1", "None")
 
 
                 elif paso == "3":
                     lista_un = servicio.lista_de_personas()
-                    if texto in lista_un:
-                        servicio.set_variable("p1", texto)
+                    if texto_mayus in lista_un:
+                        servicio.set_variable("p1", texto_mayus)
                         enviar_mensaje(info.id_chat, "Escribe el nombre de usuario del que va a recibir")
                         servicio.set_variable("paso", "4")
                     else:
@@ -137,8 +115,8 @@ def main():
 
                 elif paso == "4":
                     lista_un = servicio.lista_de_personas()
-                    if texto in lista_un:
-                       servicio.set_variable("p2", texto)
+                    if texto_mayus in lista_un:
+                       servicio.set_variable("p2", texto_mayus)
                        enviar_mensaje(info.id_chat, "Escribe la cantidad del monto")
                        servicio.set_variable("paso", "5")
                     else:
@@ -164,8 +142,8 @@ def main():
 
                 elif paso == "6":
                     lista_un = servicio.lista_de_personas()
-                    if texto in lista_un:
-                       servicio.set_variable("p1", texto)
+                    if texto_mayus in lista_un:
+                       servicio.set_variable("p1", texto_mayus)
                        enviar_mensaje(info.id_chat, "Escribe el tipo de paquete")
                        servicio.set_variable("paso", "7")
                     else:
