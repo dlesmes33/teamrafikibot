@@ -261,8 +261,15 @@ def comando_wallet(info,texto):
 '''
 def comando_wallet(info,texto):
     alias_wallet = servicio.wallet_usuario(texto)
-    alias, wallet = alias_wallet
-    mostrar_wallet_usuario(info.id_chat, alias, wallet)
+    try:
+        alias, wallet = alias_wallet
+        mostrar_wallet_usuario(info.id_chat, alias, wallet)
+    except:
+        if alias_wallet == "ne":
+            enviar_mensaje(info.id_chat, "Ese usuario no está registrado")
+        else:
+            enviar_mensaje(info.id_chat, "Use el formato /wallet @nombre_usuario o /wallet@teamrafikibot @nombre_usuario" )
+
 
 
 def ListaOrganizada():

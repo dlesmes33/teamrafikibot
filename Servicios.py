@@ -486,8 +486,8 @@ class Servicios():
                         return wallet_alias
 
                 else:
-                    return "No encontrado"
+                    return "ne"
 
 
         else:
-            return "/wallet"
+            return "we"
