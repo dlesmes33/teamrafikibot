@@ -362,7 +362,6 @@ def buscar_paquete(lista, paquete):
 def mostrar_paquetes_por_fecha():
     texto = ""
     paquetes = servicio.lista_paquetes_fechas()
-    mayor_len = servicio.mayor_len()
     if not paquetes.__len__() == 0:
         for nombre,fecha,tipo in paquetes:
             texto += str(fecha) + "  " + str(tipo) + "  " + nombre  + "\n"
