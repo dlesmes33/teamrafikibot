@@ -462,42 +462,32 @@ class Servicios():
         if comando == "/wallet":
             alias = texto[8:]
             print("alias: "+alias)
-            if not alias == "":
-                if self.validar_nombreUsuario(alias):
-                    lista_un = self.lista_de_personas()
-                    usuario_encontrado = False
-                    for alias_temp in lista_un:
-                        print("for alias temp "+str(alias_temp).lower())
-                        print("for alias "+alias)
-                        if alias == str(alias_temp).lower():
-                            usuario_encontrado = True
-                            c = Conexion.Conexion()
-                            miCursor = c.miConexion.cursor()
-                            param_list = [alias_temp]
-                            miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
-                            tabla = miCursor.fetchall()
-                            wallet = ""
-                            for row in tabla:
-                                wallet = row[0]
-                            miCursor.close()
-                        if usuario_encontrado:
-                                if not wallet == "":
-                                    print("wallet "+wallet)
-                                    print("alias "+alias_temp)
-                                    wallet_alias = alias_temp, wallet
-                                    return wallet_alias
+            lista_un = self.lista_de_personas()
+            usuario_encontrado = False
+            for alias_temp in lista_un:
+                print("for alias temp " + str(alias_temp).lower())
+                print("for alias " + alias)
+                if alias == str(alias_temp).lower():
+                    usuario_encontrado = True
+                    c = Conexion.Conexion()
+                    miCursor = c.miConexion.cursor()
+                    param_list = [alias_temp]
+                    miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
+                    tabla = miCursor.fetchall()
+                    wallet = ""
+                    for row in tabla:
+                        wallet = row[0]
+                    miCursor.close()
+                if usuario_encontrado:
+                    if not wallet == "":
+                        print("wallet " + wallet)
+                        print("alias " + alias_temp)
+                        wallet_alias = alias_temp, wallet
+                        return wallet_alias
 
-                        else:
-                                return "No encontrado"
                 else:
-                    return "No usuario"
-            else:
-                    return "/wallet"
+                    return "No encontrado"
+
+
         else:
-            return "No /wallet"
-
-
-
-
-
-
+            return "/wallet"
