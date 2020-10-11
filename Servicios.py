@@ -458,6 +458,7 @@ class Servicios():
 
     def wallet_usuario(self,texto=""):
         comando = self.reconocer_comando(texto)
+        wallet_alias = ""
         print("comando: "+comando)
         if comando == "/wallet":
             alias = texto[8:]
@@ -483,7 +484,9 @@ class Servicios():
                     wallet_alias = alias_temp, wallet
                     return wallet_alias
 
-            if not usuario_encontrado:
+            if usuario_encontrado:
+                return wallet_alias
+            else:
                 return "ne"
 
         else:
