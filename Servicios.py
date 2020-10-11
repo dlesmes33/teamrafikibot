@@ -472,7 +472,7 @@ class Servicios():
                     usuario_encontrado = True
                     c = Conexion.Conexion()
                     miCursor = c.miConexion.cursor()
-                    param_list = [alias_temp]
+                    param_list = [alias]
                     miCursor.execute("SELECT wallet FROM usuario WHERE LOWER(nombre_usuario) = %s", param_list)
                     tabla = miCursor.fetchall()
                     wallet = ""
