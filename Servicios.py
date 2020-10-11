@@ -455,7 +455,7 @@ class Servicios():
                 return False
         return True
 
-'''
+
     def wallet_usuario(self,texto=""):
         comando = self.reconocer_comando(texto)
         print("comando: "+comando)
@@ -495,7 +495,7 @@ class Servicios():
                     return "/wallet"
         else:
             return "No /wallet"
-'''
+
 
 
 
