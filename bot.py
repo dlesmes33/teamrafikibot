@@ -73,7 +73,7 @@ def main():
 
                 elif paso == "1":
                     lista_un = servicio.lista_de_personas()
-                    if not servicio.validar_nombreUsuario(texto):
+                    if servicio.validar_nombreUsuario(texto):
                         if not texto_mayus in lista_un:
                             servicio.set_variable("p1", texto_mayus)
                             servicio.set_variable("paso", "2")
